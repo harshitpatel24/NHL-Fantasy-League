@@ -9,4 +9,6 @@ public class RestController {
 	 public String greet() {
 	  return "Hello from the other side124342343!!!";
 	 }
+	
+	
 }
