@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 import { RoutingModule } from './modules/routing/routing.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
