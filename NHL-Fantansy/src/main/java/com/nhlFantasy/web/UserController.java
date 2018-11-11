@@ -19,7 +19,7 @@ public class UserController
 	public String testMethod() {
 		
 		List<User> users = userService.getAllUsers();
-		return "SUCCESSSSSSSSSSSSSSSSSSSSSs";
+		return "{ \"name\": \"bob\" }";
 
 	}
 }
