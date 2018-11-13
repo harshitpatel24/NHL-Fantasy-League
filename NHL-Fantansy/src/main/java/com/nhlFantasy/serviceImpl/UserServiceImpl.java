@@ -42,11 +42,21 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getUser(String username, String email, String password) {
-		// TODO Auto-generated method stub
+	public User authenticateUser(String email, String password) {
 		
-		User u = userRepository.getUser(username,password,email);
-		return u;
+		User u = userRepository.authenticateUser(password, email);
+		
+		if (u != null)
+		{
+			return u;
+		}
+		else
+		{
+			User blankUser = new User();
+			blankUser.setUserid(-1);
+			return blankUser;
+		}
+		
 	}
 
 	@Override
