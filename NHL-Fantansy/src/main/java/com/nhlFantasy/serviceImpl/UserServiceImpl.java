@@ -28,4 +28,40 @@ public class UserServiceImpl implements UserService{
 		return userRepository.getAllUsers();
 	}
 
+	@Override
+	public User addUser(User user) {
+		// TODO Auto-generated method stub
+		String email = user.getEmail();
+		String uname = user.getUsername();
+		String password = user.getPassword();
+		
+		//userRepository.addUser(uname, email, password);
+		
+		return null;
+	}
+
+	@Override
+	public User authenticateUser(String email, String password) {
+		
+		User u = userRepository.authenticateUser(password, email);
+		
+		if (u != null)
+		{
+			return u;
+		}
+		else
+		{
+			User blankUser = new User();
+			blankUser.setUserid(-1);
+			return blankUser;
+		}
+		
+	}
+
+	@Override
+	public boolean deleteUser(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
