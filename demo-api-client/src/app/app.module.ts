@@ -11,7 +11,6 @@ import { RoutingModule } from './modules/routing/routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// Comment here 
 @NgModule({
   declarations: [
     AppComponent,
