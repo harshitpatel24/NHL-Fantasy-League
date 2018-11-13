@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; 
 import { UserComponent } from './components/user/user.component'; 
 
 @Component({
@@ -6,6 +7,4 @@ import { UserComponent } from './components/user/user.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'demo-api-client';
-}
+export class AppComponent {}
