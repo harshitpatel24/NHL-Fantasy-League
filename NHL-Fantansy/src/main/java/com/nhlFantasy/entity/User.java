@@ -1,25 +1,49 @@
 package com.nhlFantasy.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
 
 	@Column(name="uname")
-	String username;
+	String uname;
 	@Id
+	@GeneratedValue
     @Column(name="userid")
 	int userid;
-	public String getUsername() {
-		return username;
+	
+	@Column(name="email")
+	String email;
+	
+	@Column(name="password")
+	String password;
+	
+	public String getEmail() {
+		return email;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	
 	public int getUserid() {
 		return userid;
 	}
