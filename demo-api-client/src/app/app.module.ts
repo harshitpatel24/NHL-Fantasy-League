@@ -12,12 +12,16 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { RoutingModule } from './modules/routing/routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    WelcomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

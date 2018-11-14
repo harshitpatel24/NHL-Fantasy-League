@@ -1,19 +1,25 @@
 package com.nhlFantasy.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user",
+uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
 public class User {
 
-	@Column(name="uname")
-	String username;
 	@Id
-    @Column(name="userid")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "userid")
 	int userid;
+	
+	@Column(name="uname")
+	String uname;
 	
 	@Column(name="email")
 	String email;
@@ -21,17 +27,19 @@ public class User {
 	@Column(name="password")
 	String password;
 	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	public int getUserid() {
 		return userid;
 	}
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+	
+	public String getUname() {
+		return uname;
+	}
+	
+	public void setUname(String username) {
+		this.uname = username;
 	}
 	
 	public String getEmail() {

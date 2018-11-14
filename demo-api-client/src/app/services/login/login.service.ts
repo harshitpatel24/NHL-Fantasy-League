@@ -14,15 +14,22 @@ export class LoginService {
   constructor(private http: Http) { }
   
   getUser(user){
-    //let s = '/api/get-user/' + user.username + '/' + user.email + '/' + user.password
+
     let tempObj = {
-      //"userid":user.userid,
-      //"uname": user.username,
       "email": user.email,
       "password": user.password
     }
-    return this.http.post('/api/get-user', tempObj)
-    //return this.http.get('/api/get-user')
-    .pipe(map((response: Response) => response.json()));
+
+    return this.http.post('/api/get-user', tempObj).pipe(map((response: Response) => response.json()));
+  }
+
+  createUser(user){
+    let tempObj = {
+      "uname": user.uname,
+      "email": user.email,
+      "password": user.password
+    }
+
+    return this.http.post('/api/register', tempObj).pipe(map((response: Response) => response.json()));
   }
 }

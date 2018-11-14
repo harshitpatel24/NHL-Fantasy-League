@@ -2,7 +2,7 @@
   <div layout="row" layout-align="center none">
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title *ngIf="user">{{user.uname}}</mat-card-title>
+        <mat-card-title>Register</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form class="example-form">
@@ -10,27 +10,27 @@
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Name" [(ngModel)]="user.uname" name="name" disabled>
+                  <input matInput placeholder="Enter name" [(ngModel)]="name" name="name" required>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                <input *ngIf="user" matInput placeholder="E-Mail" [(ngModel)]="user.email" name="username" disabled>
+                <input matInput placeholder="Enter e-mail" [(ngModel)]="username" name="username" required>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
             <td><mat-form-field class="example-full-width">
-              <input *ngIf="user" matInput placeholder="Password" [(ngModel)]="user.password" type="text" name="password" disabled>
+              <input matInput placeholder="Enter password" [(ngModel)]="password" type="password" name="password" required>
             </mat-form-field></td>
           </tr></table>
         </form>
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="editProfile()" color="primary">Edit Profile</button>
+        <button mat-raised-button (click)="signUp()" color="primary">Sign-Up</button>
       </mat-card-actions>
     </mat-card>
   </div>
