@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         this.user = data;
         if (this.user.userid != -1)
         {
-          alert("Success!");
+          this.router.navigate(['/users', this.user.userid]);
         }
         else
         {

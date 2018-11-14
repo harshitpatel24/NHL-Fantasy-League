@@ -9,7 +9,7 @@ import { AppComponent } from 'src/app/app.component';
 const routes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
   { path: 'welcome', component: WelcomeComponent },
-  { path: 'users', component: UserComponent },
+  { path: 'users/:id', component: UserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 ];

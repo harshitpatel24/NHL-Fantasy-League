@@ -25,9 +25,11 @@ export class LoginService {
 
   createUser(user){
     let tempObj = {
-      "name": user.name,
+      "uname": user.uname,
       "email": user.email,
       "password": user.password
     }
+
+    return this.http.post('/api/register', tempObj).pipe(map((response: Response) => response.json()));
   }
 }

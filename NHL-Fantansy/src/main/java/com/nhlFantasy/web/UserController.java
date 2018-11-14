@@ -27,13 +27,23 @@ public class UserController
 		return "{ \"name\": \"bob\" }";
 
 	}
+	
+	@RequestMapping(value = "/api/register", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+	public @ResponseBody User addUser(@RequestBody User user, HttpServletResponse response, HttpServletRequest request) {
+		User u = userService.addUser(user);
+		return u;
+	}
+	
+	@RequestMapping(value = "/api/user",  method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+	public @ResponseBody User getUserById(@RequestBody User user, HttpServletResponse response, HttpServletRequest request) {
+		User u = userService.getByUserId(user);
+		return u;
+	}
 
 	
 	@RequestMapping(value = "/api/get-user", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody User authenticateUser(@RequestBody User user,HttpServletResponse response, HttpServletRequest  request) {
-
 		User u = userService.authenticateUser(user.getEmail(), user.getPassword());
-		
 		return u;
 	}
 	

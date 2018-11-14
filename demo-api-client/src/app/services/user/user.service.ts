@@ -10,12 +10,20 @@ import 'rxjs/add/operator/do';
 })
 export class UserService {
 
-  users = []
   constructor(private http: Http) { }
 
   getAll(){
     return this.http.get('/api/users')
     .pipe(map((response: Response) => response.json()));
+  }
+
+  getUser(usr){
+
+    let tempObj = {
+      "userid": usr.userid,
+    }
+
+    return this.http.post('/api/user/', tempObj).pipe(map((response: Response) => response.json()));
   }
   
 }

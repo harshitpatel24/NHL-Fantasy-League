@@ -11,6 +11,8 @@ public interface UserService {
 
 	User addUser(User user);
 	
+	User getByUserId(User user);
+	
 	User authenticateUser(String email, String password);
 	
 	boolean deleteUser(User user);

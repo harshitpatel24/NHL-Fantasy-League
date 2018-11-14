@@ -30,14 +30,14 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User addUser(User user) {
-		// TODO Auto-generated method stub
-		String email = user.getEmail();
-		String uname = user.getUsername();
-		String password = user.getPassword();
-		
-		//userRepository.addUser(uname, email, password);
-		
-		return null;
+		User u = userRepository.save(user); 
+		return u;
+	}
+	
+	@Override
+	public User getByUserId(User user) {
+		User u = userRepository.getUserById(user.getUserid());
+		return u;
 	}
 
 	@Override
