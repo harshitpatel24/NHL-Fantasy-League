@@ -23,7 +23,18 @@ export class UserService {
       "userid": usr.userid,
     }
 
-    return this.http.post('/api/user/', tempObj).pipe(map((response: Response) => response.json()));
+    return this.http.post('/api/user', tempObj).pipe(map((response: Response) => response.json()));
+  }
+
+  updateUser(usr){
+    let tempObj = {
+      "userid": usr.userid,
+      "uname": usr.uname,
+      "email": usr.email,
+      "password": usr.password
+    }
+
+    return this.http.post('/api/update-user', tempObj).pipe(map((response: Response) => response.json()));
   }
   
 }
