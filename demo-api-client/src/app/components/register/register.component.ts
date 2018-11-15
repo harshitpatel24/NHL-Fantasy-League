@@ -27,14 +27,15 @@ export class RegisterComponent implements OnInit {
       password: this.password
     }
 
-    console.log(usr);
+    //console.log(usr);
 
     this.loginService.createUser(usr).subscribe(data => {
       this.user = data;
       console.log(data);
       if (this.user.userid != -1)
       {
-        alert("Success!");
+        this.router.navigate(['/users', this.user.userid]);
+        //alert("Success!");
       }
       else
       {
