@@ -13,6 +13,8 @@ public interface UserService {
 	
 	User getByUserId(User user);
 	
+	User updateUser(User user);
+	
 	User authenticateUser(String email, String password);
 	
 	boolean deleteUser(User user);

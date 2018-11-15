@@ -39,7 +39,13 @@ public class UserController
 		User u = userService.getByUserId(user);
 		return u;
 	}
-
+	
+	@RequestMapping(value = "/api/update-user",  method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+	public @ResponseBody User updateUser(@RequestBody User user, HttpServletResponse response, HttpServletRequest request) {
+		User u  = userService.updateUser(user);
+		
+		return u; 
+	}
 	
 	@RequestMapping(value = "/api/get-user", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody User authenticateUser(@RequestBody User user,HttpServletResponse response, HttpServletRequest  request) {

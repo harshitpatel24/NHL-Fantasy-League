@@ -34,6 +34,22 @@ public class UserServiceImpl implements UserService{
 		return u;
 	}
 	
+	@Override 
+	public User updateUser(User user) {
+		int flag = userRepository.updateUser(user.getUserid(), user.getUname(), user.getEmail(), user.getPassword()); 
+		
+		if (flag == 1)
+		{
+			 return this.getByUserId(user);  
+		}
+		else
+		{
+			User u = new User(); 
+			u.setUserid(-1);
+			return u;
+		}
+	}
+	
 	@Override
 	public User getByUserId(User user) {
 		User u = userRepository.getUserById(user.getUserid());
