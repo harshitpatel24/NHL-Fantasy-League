@@ -35,5 +35,8 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 //	@Query("select u from User u where u.uname like ? and u.email like ? and u.password like ?")
 //	User getUser(@Param("uname")String uname, @Param("password")String password, @Param("email")String email);
+	
+	@Query(nativeQuery = true, value = "select * from user u where u.userid = :userid")
+	User searchUserbyId(@Param("userid") int userid);
 
 }

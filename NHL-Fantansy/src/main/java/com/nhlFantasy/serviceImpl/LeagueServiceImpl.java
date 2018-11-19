@@ -14,8 +14,23 @@ public class LeagueServiceImpl implements LeagueService{
 	LeagueRepository leagueRepository;
 	@Override
 	public League addLeague(League league) {
-		// TODO Auto-generated method stub
-		return leagueRepository.save(league);
+		League savedLeague  = null;
+		try {
+			savedLeague = leagueRepository.save(league);
+		}catch(Exception e) {
+			//e.printStackTrace();
+			savedLeague = new League();
+			savedLeague.setLeagueId(-1);
+		}
+		
+//		if (savedLeague == null)
+//		{
+//			
+//			
+//			return savedLeague;
+//		}
+		
+		return savedLeague;
 	}
 
 }
