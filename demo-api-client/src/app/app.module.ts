@@ -14,6 +14,8 @@ import { RoutingModule } from './modules/routing/routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LeagueComponent } from './components/league/league/league.component';
+import { CreateLeagueComponent } from './components/create-league/create-league.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { RegisterComponent } from './components/register/register.component';
     UserComponent,
     LoginComponent,
     WelcomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    LeagueComponent,
+    CreateLeagueComponent
   ],
   imports: [
     BrowserModule,
