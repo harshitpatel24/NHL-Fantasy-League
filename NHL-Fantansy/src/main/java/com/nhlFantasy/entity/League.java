@@ -1,6 +1,7 @@
 package com.nhlFantasy.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,19 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "league")
-public class League {
+public class League implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +28,29 @@ public class League {
 	@JoinColumn(name = "creatorId")
 	User user; 
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@OneToMany(mappedBy = "league", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<LeagueMember> leagueMember;
+	
 //	@NaturalId
 //	@Column(name = "creatorId")
 //	int creatorId;
 	
+	public Set<LeagueMember> getUserLeague() {
+		return leagueMember;
+	}
+
+	public void setUserLeague(Set<LeagueMember> leagueMember) {
+		this.leagueMember = leagueMember;
+	}
+
 	@Column(name = "leagueName")
 	String leagueName;
 	
@@ -62,13 +76,7 @@ public class League {
 		this.leagueId = leagueId;
 	}
 	
-	public User getCreator() {
-		return user;
-	}
 	
-	public void setCreator(User creator) {
-		this.user = creator;
-	}
 	public String getLeagueName() {
 		return leagueName;
 	}
