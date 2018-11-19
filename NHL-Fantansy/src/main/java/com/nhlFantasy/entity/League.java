@@ -37,18 +37,18 @@ public class League implements Serializable{
 	}
 
 	@OneToMany(mappedBy = "league", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<UserLeague> userLeague;
+    private Set<LeagueMember> leagueMember;
 	
 //	@NaturalId
 //	@Column(name = "creatorId")
 //	int creatorId;
 	
-	public Set<UserLeague> getUserLeague() {
-		return userLeague;
+	public Set<LeagueMember> getUserLeague() {
+		return leagueMember;
 	}
 
-	public void setUserLeague(Set<UserLeague> userLeague) {
-		this.userLeague = userLeague;
+	public void setUserLeague(Set<LeagueMember> leagueMember) {
+		this.leagueMember = leagueMember;
 	}
 
 	@Column(name = "leagueName")

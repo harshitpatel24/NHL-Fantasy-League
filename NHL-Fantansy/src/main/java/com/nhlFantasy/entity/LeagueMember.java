@@ -1,6 +1,5 @@
 package com.nhlFantasy.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "userLeague")
-public class UserLeague{
+@Table(name = "leagueMember")
+public class LeagueMember{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -34,18 +34,18 @@ public class LeagueController {
 		//User u = userRepository.searchUserbyId(id);
 		//league.setUser(u);
 		//System.out.println(league.getUser());
-		User u = new User();
-		u.setUserid(Integer.parseInt(objNode.get("creatorId").get("userid").toString()));
-		League l = new League();
-		l.setLeagueCapacity(Integer.parseInt(objNode.get("leagueCapacity").toString()));
-		l.setLeagueName(objNode.get("leagueName").toString());
-		l.setLeaguePassword(objNode.get("leaguePassword").toString());
-		l.setUser(u);
+		User user = new User();
+		user.setUserid(Integer.parseInt(objNode.get("creatorId").get("userid").toString()));
+		League league = new League();
+		league.setLeagueCapacity(Integer.parseInt(objNode.get("leagueCapacity").toString()));
+		league.setLeagueName(objNode.get("leagueName").toString());
+		league.setLeaguePassword(objNode.get("leaguePassword").toString());
+		league.setUser(user);
 		//System.out.println(objNode.get("leaguePassword").toString());
 	
 		//return null;
-		League l1 = leagueService.addLeague(l);
+		League leagueObjForSave = leagueService.addLeague(league);
 		
-		return l1;
+		return leagueObjForSave;
 	}
 }

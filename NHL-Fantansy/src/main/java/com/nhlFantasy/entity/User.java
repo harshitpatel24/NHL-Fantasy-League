@@ -37,13 +37,13 @@ public class User implements Serializable {
     private Set<League> league;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<UserLeague> userLeague;
+    private Set<LeagueMember> leagueMember;
 	
-	public Set<UserLeague> getUserLeague() {
-		return userLeague;
+	public Set<LeagueMember> getUserLeague() {
+		return leagueMember;
 	}
-	public void setUserLeague(Set<UserLeague> userLeague) {
-		this.userLeague = userLeague;
+	public void setUserLeague(Set<LeagueMember> leagueMember) {
+		this.leagueMember = leagueMember;
 	}
 	public Set<League> getLeague() {
 		return league;
