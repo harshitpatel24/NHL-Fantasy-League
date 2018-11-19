@@ -1,24 +1,23 @@
 package com.nhlFantasy.entity;
 
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "user",
 uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +36,15 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<League> league;
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<UserLeague> userLeague;
+	
+	public Set<UserLeague> getUserLeague() {
+		return userLeague;
+	}
+	public void setUserLeague(Set<UserLeague> userLeague) {
+		this.userLeague = userLeague;
+	}
 	public Set<League> getLeague() {
 		return league;
 	}

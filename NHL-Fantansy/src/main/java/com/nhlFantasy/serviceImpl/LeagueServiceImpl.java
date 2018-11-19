@@ -15,6 +15,9 @@ public class LeagueServiceImpl implements LeagueService{
 	@Override
 	public League addLeague(League league) {
 		// TODO Auto-generated method stub
+		//leagueRepository.save(league);
+		
+		//System.out.println(league.getUser().getUserid());
 		return leagueRepository.save(league);
 	}
 
