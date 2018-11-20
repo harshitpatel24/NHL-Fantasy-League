@@ -32,5 +32,25 @@ public class LeagueServiceImpl implements LeagueService{
 		
 		return savedLeague;
 	}
+	@Override
+	public int searchLeague(int leagueId, String leaguePassword) {
+		// TODO Auto-generated method stub
+		
+		int count = leagueRepository.searchLeague(leagueId,leaguePassword);
+		
+		return count;
+	}
+	@Override
+	public int findLeagueCapacity(int leagueId) {
+		// TODO Auto-generated method stub
+		int leagueCapacity = leagueRepository.findLeagueCapacity(leagueId);
+		return leagueCapacity;
+	}
+	@Override
+	public League findLeagueById(int leagueId) {
+		// TODO Auto-generated method stub
+		leagueRepository.findLeagueById(leagueId);
+		return leagueRepository.findLeagueById(leagueId);
+	}
 
 }

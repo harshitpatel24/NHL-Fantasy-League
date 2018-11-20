@@ -17,5 +17,11 @@ public class LeagueMemberServiceImpl implements LeagueMemberService{
 		// TODO Auto-generated method stub
 		return leagueMemberRepository.save(leagueMember);
 	}
+	@Override
+	public int countLeagueMember(int leagueid) {
+		// TODO Auto-generated method stub
+		int countLeagueMembers = leagueMemberRepository.countLeagueMember(leagueid);
+		return countLeagueMembers;
+	}
 
 }
