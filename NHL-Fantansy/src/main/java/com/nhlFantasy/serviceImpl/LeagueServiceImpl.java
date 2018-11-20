@@ -33,12 +33,24 @@ public class LeagueServiceImpl implements LeagueService{
 		return savedLeague;
 	}
 	@Override
-	public int searchLeague(int leagueId, String leaguePassword) {
+	public League findLeague(int leagueId, String leaguePassword) {
 		// TODO Auto-generated method stub
+		League league = null;
 		
-		int count = leagueRepository.searchLeague(leagueId,leaguePassword);
+		try {
+			//count = leagueRepository.findLeague(leagueId);
+		    league = leagueRepository.findLeague(leagueId, leaguePassword);
+		    //System.out.println(league.getLeagueId());
+		}catch(Exception e) {
+			//count = 0;
+			//league = null;
+			//System.out.println("\n\ninto exception");
+			league = new League();
+			league.setLeagueId(-1);
+		}
 		
-		return count;
+		
+		return league;
 	}
 	@Override
 	public int findLeagueCapacity(int leagueId) {
