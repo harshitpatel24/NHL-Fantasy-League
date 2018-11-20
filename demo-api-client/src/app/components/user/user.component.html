@@ -10,7 +10,7 @@
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Name" [(ngModel)]="user.uname" name="name" [disabled]="getDisabled()">
+                  <input *ngIf="user" matInput placeholder="Name" [(ngModel)]="user.uname" name="name" [disabled]="getDisabled()">
                 </mat-form-field>
               </td>
             </tr>
@@ -23,7 +23,7 @@
             </tr>
             <tr>
             <td><mat-form-field class="example-full-width">
-              <input *ngIf="user" matInput placeholder="Password" [(ngModel)]="user.password" type="text" name="password" [disabled]="getDisabled()">
+              <input *ngIf="user" matInput placeholder="Password" [(ngModel)]="user.password" type="password" name="password" [disabled]="getDisabled()">
             </mat-form-field></td>
           </tr></table>
         </form>

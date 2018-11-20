@@ -10,33 +10,27 @@
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Name" [(ngModel)]="leauge.name" name="name" [disabled]="getDisabled()">
+                  <input matInput placeholder="Enter league name" [(ngModel)]="league.leagueName" name="name">
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                <input *ngIf="user" matInput placeholder="E-Mail" [(ngModel)]="user.email" name="username" [disabled]="getDisabled()">
+                <input matInput placeholder="Enter league capacity" [(ngModel)]="league.leagueCapacity" name="username">
                 </mat-form-field>
               </td>
             </tr>
             <tr>
             <td><mat-form-field class="example-full-width">
-              <input *ngIf="user" matInput placeholder="Password" [(ngModel)]="user.password" type="text" name="password" [disabled]="getDisabled()">
+              <input matInput placeholder="Enter league password" [(ngModel)]="league.leaguePassword" type="password" name="password">
             </mat-form-field></td>
           </tr></table>
         </form>
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="editProfile()" color="primary" [disabled]="getEditButton()">Edit Profile</button>
-      </mat-card-actions>
-      <mat-card-actions>
-        <button mat-raised-button (click)="submitProfile()" color="primary" [disabled]="getSubmitButton()">Submit</button>
-      </mat-card-actions>
-      <mat-card-actions>
-        <button mat-raised-button (click)="createLeague()" color="primary">Create League</button>
+        <button mat-raised-button (click)="submitLeague()" color="primary">Submit</button>
       </mat-card-actions>
     </mat-card>
   </div>
