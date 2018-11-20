@@ -29,12 +29,13 @@ public class LeagueController {
 	
 	@RequestMapping(value = "/api/addLeague", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody JsonNode addLeague(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
-		
+		System.out.println(objNode.toString());
 		ObjectMapper mapper = new ObjectMapper();
 		User user = new User();
 		user.setUserid(Integer.parseInt(objNode.get("creatorId").get("userid").toString()));
 		League league = new League();
-		league.setLeagueCapacity(Integer.parseInt(objNode.get("leagueCapacity").toString()));
+		String leagueCapacity  = objNode.get("leagueCapacity").toString();
+		league.setLeagueCapacity(Integer.parseInt(leagueCapacity.substring(1, leagueCapacity.length()- 1)));
 		
 		String leagueName=objNode.get("leagueName").toString();
 		league.setLeagueName(leagueName.substring(1,leagueName.length()-1));

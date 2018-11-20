@@ -24,33 +24,6 @@ public class League implements Serializable{
 	@Column(name = "leagueId")
 	int leagueId;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "creatorId")
-	User user; 
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@OneToMany(mappedBy = "league", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<LeagueMember> leagueMember;
-	
-//	@NaturalId
-//	@Column(name = "creatorId")
-//	int creatorId;
-	
-	public Set<LeagueMember> getUserLeague() {
-		return leagueMember;
-	}
-
-	public void setUserLeague(Set<LeagueMember> leagueMember) {
-		this.leagueMember = leagueMember;
-	}
-
 	@Column(name = "leagueName")
 	String leagueName;
 	
@@ -60,13 +33,13 @@ public class League implements Serializable{
 	@Column(name = "leaguePassword")
 	String leaguePassword;
 	
-	public String getLeaguePassword() {
-		return leaguePassword;
-	}
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "creatorId")
+	User user; 
+
+//	@OneToMany(mappedBy = "league", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private Set<LeagueMember> leagueMember;
 	
-	public void setLeaguePassword(String leaguePassword) {
-		this.leaguePassword = leaguePassword;
-	}
 	
 	public int getLeagueId() {
 		return leagueId;
@@ -75,7 +48,6 @@ public class League implements Serializable{
 	public void setLeagueId(int leagueId) {
 		this.leagueId = leagueId;
 	}
-	
 	
 	public String getLeagueName() {
 		return leagueName;
@@ -92,6 +64,30 @@ public class League implements Serializable{
 	public void setLeagueCapacity(int leagueCapacity) {
 		this.leagueCapacity = leagueCapacity;
 	}
+	
+	public String getLeaguePassword() {
+		return leaguePassword;
+	}
+	
+	public void setLeaguePassword(String leaguePassword) {
+		this.leaguePassword = leaguePassword;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+//	public Set<LeagueMember> getUserLeague() {
+//		return leagueMember;
+//	}
+//
+//	public void setUserLeague(Set<LeagueMember> leagueMember) {
+//		this.leagueMember = leagueMember;
+//	}
 	
 	
 }
