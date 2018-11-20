@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   editButton: boolean = false; 
   submitButton: boolean = true; 
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   editProfile() {
     this.inactive = false;
@@ -51,6 +51,10 @@ export class UserComponent implements OnInit {
         this.user = data;
       });
    }
+  }
+
+  createLeague() {
+    this.router.navigate(['/create-league', this.user.userid]);
   }
 
   submitProfile() {

@@ -80,4 +80,11 @@ public class UserServiceImpl implements UserService{
 		return false;
 	}
 
+	@Override
+	public User searchUserbyuserId(int id) {
+		// TODO Auto-generated method stub
+		User u = userRepository.searchUserbyId(id);
+		return u;
+	}
+
 }

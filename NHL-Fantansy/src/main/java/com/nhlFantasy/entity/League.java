@@ -1,6 +1,7 @@
 package com.nhlFantasy.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,32 +11,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "league")
-public class League {
+public class League implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "leagueId")
 	int leagueId;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "creatorId")
-	User user; 
-	
-//	@NaturalId
-//	@Column(name = "creatorId")
-//	int creatorId;
 	
 	@Column(name = "leagueName")
 	String leagueName;
@@ -46,13 +33,13 @@ public class League {
 	@Column(name = "leaguePassword")
 	String leaguePassword;
 	
-	public String getLeaguePassword() {
-		return leaguePassword;
-	}
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "creatorId")
+	User user; 
+
+//	@OneToMany(mappedBy = "league", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private Set<LeagueMember> leagueMember;
 	
-	public void setLeaguePassword(String leaguePassword) {
-		this.leaguePassword = leaguePassword;
-	}
 	
 	public int getLeagueId() {
 		return leagueId;
@@ -62,13 +49,6 @@ public class League {
 		this.leagueId = leagueId;
 	}
 	
-	public User getCreator() {
-		return user;
-	}
-	
-	public void setCreator(User creator) {
-		this.user = creator;
-	}
 	public String getLeagueName() {
 		return leagueName;
 	}
@@ -84,6 +64,30 @@ public class League {
 	public void setLeagueCapacity(int leagueCapacity) {
 		this.leagueCapacity = leagueCapacity;
 	}
+	
+	public String getLeaguePassword() {
+		return leaguePassword;
+	}
+	
+	public void setLeaguePassword(String leaguePassword) {
+		this.leaguePassword = leaguePassword;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+//	public Set<LeagueMember> getUserLeague() {
+//		return leagueMember;
+//	}
+//
+//	public void setUserLeague(Set<LeagueMember> leagueMember) {
+//		this.leagueMember = leagueMember;
+//	}
 	
 	
 }
