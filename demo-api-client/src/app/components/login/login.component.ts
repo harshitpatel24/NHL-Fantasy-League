@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
         this.user = data;
         if (this.user.userid != -1)
         {
+          console.log(this.user);
           this.router.navigate(['/users', this.user.userid]);
         }
         else
