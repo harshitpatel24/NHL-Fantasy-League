@@ -38,6 +38,11 @@
       <mat-card-actions>
         <button mat-raised-button (click)="createLeague()" color="primary">Create League</button>
       </mat-card-actions>
+      <mat-card-actions>
+        <button *ngIf="joinLeagueButton" mat-raised-button (click)="joinLeague()" color="primary">Join League</button>
+        <app-join-league *ngIf="joinLeagueForm" [user]="user"></app-join-league>
+      </mat-card-actions>
+      
     </mat-card>
   </div>
 </div>

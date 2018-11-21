@@ -30,116 +30,66 @@ public class LeageMemberController {
 	
 	@Autowired
 	UserService userService;
-	
-	//@Autowired
-	//LeagueMember leagueMember;
-	
-//	@Autowired
-//	League league;
-//	
-//	@Autowired
-//	User user;
-	
-	boolean isMemberExists(int userId,int leagueId)
-	{
-		boolean exists;
-		LeagueMember leagueMember =  null;
-		leagueMember = leagueMemberService.findLeagueMemberbyUserid(leagueId, userId);
-		
-		if(leagueMember.getLeague().getLeagueId() == -1) {
-			exists = false;
-		} else {
-			exists = true;
-		}
-		//System.out.println("exists = " + exists);
-		return exists;
-	}
 
 	@RequestMapping(value = "/api/addLeagueMember", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody JsonNode addLeagueMember(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
 	
 		ObjectMapper mapper = new ObjectMapper();
 		
-		User user = null;
-		League league = null;
-		int leagueId = Integer.parseInt(objNode.get("leagueId").toString());
-		String leaguePassword = objNode.get("leaguePassword").toString();
-		int userid = Integer.parseInt(objNode.get("userid").toString());
-		//System.out.println("league pass = " + leaguePassword + " league id = " + leagueId);
+		String tempLeagueId = objNode.get("leagueId").toString();
+		int leagueId = Integer.parseInt(tempLeagueId.substring(1, tempLeagueId.length()-1));
 		
+		String tempUserId = objNode.get("userid").toString();
+		int userid = Integer.parseInt(tempUserId);
+		
+		String leaguePassword = objNode.get("leaguePassword").toString();
 		leaguePassword = leaguePassword.substring(1, leaguePassword.length() -1);
 		
 		
-		
-		league = leagueService.findLeague(leagueId, leaguePassword);
-		//count = leagueService.findLeague(leagueId);
-		
-		int numberofLeagueMembers = 0;
-		int leagueCapacity = 0;
-		
-		LeagueMember leagueMemberObject = new LeagueMember();
-		LeagueMember leagueMember = new LeagueMember();
-			
+		LeagueMember leagueMemberObject = new LeagueMember(); 
 		JsonNode node = null;
-		//System.out.println("League is present in League table , count =" + league.getLeagueId());
-		//System.out.println("League is present in League table , count =" + count);
 		
-		if (league.getLeagueId() != -1) {
-			//System.out.println(" league poass = " + league.getLeaguePassword().toString() + " league pass input = " + leaguePassword);
-			//if(league.getLeaguePassword().equals(leaguePassword)) {
-				//System.out.println("into 000000");
-				league = leagueService.findLeagueById(leagueId);
-				
-				//System.out.println("league id of league presenrt = " + league.getLeagueId());
-				user = userService.searchUserbyuserId(userid);
-				
-				if(isMemberExists(user.getUserid(),league.getLeagueId()))
-				{
-					league.setLeagueId(-1);
-					leagueMemberObject.setLeague(league);
-					leagueMemberObject.setUser(user);
-					node = mapper.convertValue(leagueMemberObject, JsonNode.class);
-				}
-				else
-				{
-					numberofLeagueMembers = leagueMemberService.countLeagueMember(league.getLeagueId());
-					
-					//System.out.println("number of league members in this league=" + numberofLeagueMembers);
-					leagueCapacity = leagueService.findLeagueCapacity(league.getLeagueId());
-					
-					//System.out.println("league Capacity of league = " + leagueCapacity);
-					
-					if (leagueCapacity > numberofLeagueMembers) {
-						
-						//System.out.println("into 11111");
-						leagueMember.setLeague(league);
-						leagueMember.setUser(user);
-						leagueMemberObject = leagueMemberService.addLeagueMember(leagueMember);
-						node = mapper.convertValue(leagueMemberObject, JsonNode.class);
-						
-					} else {
-						//System.out.println(league.getLeagueId());
-						league.setLeagueId(-1);
-						leagueMemberObject.setLeague(league);
-						leagueMemberObject.setUser(user);
-						node = mapper.convertValue(leagueMemberObject, JsonNode.class);
-					}
-				}
-			//}
-			
-//			else {
-//				node = mapper.convertValue(leagueObjForSave, JsonNode.class);
-//				//return false;
-//			}
-		} else {
-			System.out.println(league.getLeagueId());
-			user = userService.searchUserbyuserId(userid);
-			leagueMemberObject.setLeague(league);
-			leagueMemberObject.setUser(user);
+		League league = leagueService.findLeague(leagueId, leaguePassword);
+		
+		if (league.getLeagueId() == -1)
+		{
+			leagueMemberObject.setId(-1);
 			node = mapper.convertValue(leagueMemberObject, JsonNode.class);
+			return node; 	
 		}
 		
-		return node;
+		LeagueMember tempLeagueMember = leagueMemberService.findLeagueMemberbyUserid(leagueId, userid);
 		
+		if (tempLeagueMember != null)
+		{
+			leagueMemberObject.setId(-1);
+			node = mapper.convertValue(leagueMemberObject, JsonNode.class);
+			return node;
+		}
+		
+		int numberofLeagueMembers = leagueMemberService.countLeagueMember(league.getLeagueId());
+		
+		if (numberofLeagueMembers + 1 <= league.getLeagueCapacity())
+		{
+			LeagueMember leagueMember = new LeagueMember();
+			
+			User user = new User();
+			user.setUserid(userid);
+			leagueMember.setUser(user);
+			
+			League tempLeague = new League();
+			tempLeague.setLeagueId(leagueId);
+			leagueMember.setLeague(tempLeague);
+			
+			leagueMemberObject = leagueMemberService.addLeagueMember(leagueMember);	
+			node = mapper.convertValue(leagueMemberObject, JsonNode.class);
+			return node; 
+		}
+		else 
+		{
+			leagueMemberObject.setId(-1);
+			node = mapper.convertValue(leagueMemberObject, JsonNode.class);
+			return node;
+		}
 	}
 }

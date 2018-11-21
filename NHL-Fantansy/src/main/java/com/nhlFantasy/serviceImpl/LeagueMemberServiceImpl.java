@@ -15,30 +15,28 @@ public class LeagueMemberServiceImpl implements LeagueMemberService{
 	LeagueMemberRepository leagueMemberRepository;
 	@Override
 	public LeagueMember addLeagueMember(LeagueMember leagueMember) {
-		// TODO Auto-generated method stub
 		return leagueMemberRepository.save(leagueMember);
 	}
+	
 	@Override
 	public int countLeagueMember(int leagueid) {
-		// TODO Auto-generated method stub
 		int countLeagueMembers = leagueMemberRepository.countLeagueMember(leagueid);
 		return countLeagueMembers;
 	}
+	
 	@Override
-	public LeagueMember findLeagueMemberbyUserid(int leagueid, int userid) {
-		// TODO Auto-generated method stub
+	public LeagueMember findLeagueMemberbyUserid(int leagueid, int userid)
+	{
 		LeagueMember leagueMember = null;
-		League league = null;
-		try {
+		
+		try
+		{
 			leagueMember = leagueMemberRepository.findLeagueMemberbyUserId(leagueid, userid);
-			//System.out.println(leagueMember.getLeague().getLeagueId());
-			//System.out.println("\n\nyes it printds\n\n");
-		}catch(Exception e) {
-			//System.out.println("here in except");
+		}
+		catch(Exception e)
+		{
 			leagueMember = new LeagueMember();
-			league = new League();
-			league.setLeagueId(-1);
-			leagueMember.setLeague(league);
+			leagueMember.setId(-1);
 		}
 		
 		return leagueMember ;

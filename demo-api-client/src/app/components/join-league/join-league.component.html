@@ -1,0 +1,26 @@
+<div layout-fill layout="column" layout-align="center none">
+  <div layout="row" layout-align="center none">
+    <mat-card class="example-card">
+      <mat-card-content>
+        <form class="example-form">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Enter league key" [(ngModel)]="league.leagueId" name="name">
+                </mat-form-field>
+              </td>
+            </tr>
+            <td><mat-form-field class="example-full-width">
+              <input matInput placeholder="Enter league password" [(ngModel)]="league.leaguePassword" type="password" name="password">
+            </mat-form-field></td>
+          </table>
+        </form>
+        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="joinLeague()" color="primary">Join</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
