@@ -27,6 +27,9 @@ public class HockeyPlayer implements Serializable{
 	@Column(name = "teamName")
 	String teamName;
 	
+	@Column(name = "teamAbbr")
+	String teamAbbr;
+	
 	@Column(name = "position")
 	String position;
 
