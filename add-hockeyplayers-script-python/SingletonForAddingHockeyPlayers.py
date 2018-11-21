@@ -1,34 +1,35 @@
+from __future__ import print_function
 import mysql.connector
 import json
 class Singleton:
-	
+
 	__instance = None
-	
-	@staticmethod 
+
+	@staticmethod
 	def getInstance():
 		if Singleton.__instance == None:
 			Singleton()
 		return Singleton.__instance
-	
+
 	def __init__(self):
 		if Singleton.__instance != None:
 			raise Exception("This class is a singleton!")
 		else:
 			Singleton.__instance = self
-	
+
 	def getConnection(self):
 		try:
-			conn=mysql.connector.connect(user='root', password='harshit24',host='localhost',database='NHLFantasyLeague')
+			conn=mysql.connector.connect(user="root", password="adkdpd00",host="localhost",database="NHLFantasyLeague")
 			return conn
 		except:
 			print("Database Connection Failed.....")
 			return
-		
+
 	def loadJson(self,fileName):
-		with open('final758PlayersData.json','r') as players:
+		with open(fileName,'r') as players:
 			jsonObjectList = json.load(players)
 		return jsonObjectList
-	
+
 	def insretInToDb(self,connection,jsonObject):
 		try:
 			cursor = connection.cursor()
@@ -40,16 +41,16 @@ class Singleton:
 			cursor.close()
 		except:
 			print("Unable to create cursor")
-	
+
 	def saveJsonObjToDb(self,jsonObject):
 		connection = self.getConnection()
 		self.insretInToDb(connection,jsonObject)
 		connection.close()
-	
+
 	def iterateAndSaveInDb(self,jsonObjectList):
 		for jsonObject in jsonObjectList:
 			self.saveJsonObjToDb(jsonObject)
-	
+
 	def addToDb(self):
 		jsonObjectList = self.loadJson('final758PlayersData.json')
 		#print(jsonObjectList)
