@@ -13,38 +13,32 @@ public class LeagueServiceImpl implements LeagueService{
 	@Autowired
 	LeagueRepository leagueRepository;
 	@Override
-	public League addLeague(League league) {
+	public League addLeague(League league)
+	{
 		League savedLeague  = null;
-		try {
+		try
+		{
 			savedLeague = leagueRepository.save(league);
-		}catch(Exception e) {
-			//e.printStackTrace();
+		}
+		catch(Exception e) 
+		{
 			savedLeague = new League();
 			savedLeague.setLeagueId(-1);
 		}
 		
-//		if (savedLeague == null)
-//		{
-//			
-//			
-//			return savedLeague;
-//		}
-		
 		return savedLeague;
 	}
 	@Override
-	public League findLeague(int leagueId, String leaguePassword) {
-		// TODO Auto-generated method stub
+	public League findLeague(int leagueId, String leaguePassword)
+	{
 		League league = null;
 		
-		try {
-			//count = leagueRepository.findLeague(leagueId);
+		try 
+		{
 		    league = leagueRepository.findLeague(leagueId, leaguePassword);
-		    //System.out.println(league.getLeagueId());
-		}catch(Exception e) {
-			//count = 0;
-			//league = null;
-			//System.out.println("\n\ninto exception");
+		}
+		catch(Exception e) 
+		{
 			league = new League();
 			league.setLeagueId(-1);
 		}
@@ -52,16 +46,17 @@ public class LeagueServiceImpl implements LeagueService{
 		
 		return league;
 	}
+	
 	@Override
-	public int findLeagueCapacity(int leagueId) {
-		// TODO Auto-generated method stub
+	public int findLeagueCapacity(int leagueId)
+	{
 		int leagueCapacity = leagueRepository.findLeagueCapacity(leagueId);
 		return leagueCapacity;
 	}
+	
 	@Override
-	public League findLeagueById(int leagueId) {
-		// TODO Auto-generated method stub
-		leagueRepository.findLeagueById(leagueId);
+	public League findLeagueById(int leagueId)
+	{
 		return leagueRepository.findLeagueById(leagueId);
 	}
 

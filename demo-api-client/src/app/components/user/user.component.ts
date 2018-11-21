@@ -14,6 +14,8 @@ export class UserComponent implements OnInit {
   inactive: boolean = true;
   editButton: boolean = false; 
   submitButton: boolean = true; 
+  joinLeagueForm: boolean = false;
+  joinLeagueButton: boolean = true; 
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
@@ -55,6 +57,12 @@ export class UserComponent implements OnInit {
 
   createLeague() {
     this.router.navigate(['/create-league', this.user.userid]);
+  }
+
+  joinLeague() {
+    this.joinLeagueButton = false;
+    this.joinLeagueForm = true;
+
   }
 
   submitProfile() {

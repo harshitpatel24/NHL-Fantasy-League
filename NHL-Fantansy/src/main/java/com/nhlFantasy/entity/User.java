@@ -33,24 +33,6 @@ public class User implements Serializable {
 	@Column(name="password")
 	String password;
 	
-//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private Set<League> league;
-//	
-//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private Set<LeagueMember> leagueMember;
-//	
-//	public Set<LeagueMember> getUserLeague() {
-//		return leagueMember;
-//	}
-//	public void setUserLeague(Set<LeagueMember> leagueMember) {
-//		this.leagueMember = leagueMember;
-//	}
-//	public Set<League> getLeague() {
-//		return league;
-//	}
-//	public void setLeague(Set<League> league) {
-//		this.league = league;
-//	}
 	public int getUserid() {
 		return userid;
 	}

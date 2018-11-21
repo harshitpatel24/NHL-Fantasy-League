@@ -36,10 +36,6 @@ public class League implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "creatorId")
 	User user; 
-
-//	@OneToMany(mappedBy = "league", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private Set<LeagueMember> leagueMember;
-	
 	
 	public int getLeagueId() {
 		return leagueId;
@@ -80,14 +76,5 @@ public class League implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-//	public Set<LeagueMember> getUserLeague() {
-//		return leagueMember;
-//	}
-//
-//	public void setUserLeague(Set<LeagueMember> leagueMember) {
-//		this.leagueMember = leagueMember;
-//	}
-	
 	
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { map } from "rxjs/operators";
 import { League } from '../../models/league.model';
+import { LeagueMember } from '../../models/league-member.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,20 @@ export class LeagueService {
     }
 
     return this.http.post('/api/addLeague', tempObj).pipe(map((response: Response) => response.json()));
+  }
+
+  joinLeague(leagueMember: LeagueMember)
+  {
+    let tempObj = {
+      "userid" : leagueMember.user.userid,
+      "leagueId":  leagueMember.league.leagueId,
+      "leaguePassword": leagueMember.password
+    }
+
+    console.log(tempObj);
+
+    return this.http.post('/api/addLeagueMember', tempObj).pipe(map((response: Response) => response.json()));
+    
+
   }
 }

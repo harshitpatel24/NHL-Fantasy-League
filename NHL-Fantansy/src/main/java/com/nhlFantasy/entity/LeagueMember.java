@@ -16,7 +16,7 @@ public class LeagueMember{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userid")
 	User user; 
@@ -24,6 +24,14 @@ public class LeagueMember{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "leagueid")
 	League league;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public User getUser() {
 		return user;
