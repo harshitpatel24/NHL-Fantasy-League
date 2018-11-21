@@ -16,6 +16,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LeagueComponent } from './components/league/league.component';
 import { CreateLeagueComponent } from './components/create-league/create-league.component';
+import { JoinLeagueComponent } from './components/join-league/join-league.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreateLeagueComponent } from './components/create-league/create-league.
     WelcomeComponent,
     RegisterComponent,
     LeagueComponent,
-    CreateLeagueComponent
+    CreateLeagueComponent,
+    JoinLeagueComponent
   ],
   imports: [
     BrowserModule,
