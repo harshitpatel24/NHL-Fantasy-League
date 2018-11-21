@@ -15,7 +15,14 @@ public class ShowCreatedLeagueServiceImpl implements ShowCreatedLeagueService {
 	@Override
 	public ArrayList<League> getCreatedLeaguesService(int creatorId) {
 		ArrayList<League> leaguesCreated= new ArrayList<League>();
+		//ArrayList<League> leagues = new ArrayList<League>();
 		leaguesCreated = leagueRepository.getCreatedLeague(creatorId);
+		
+		for(int i=0; i<leaguesCreated.size();i++) {
+			League league = leaguesCreated.get(i);
+			league.setLeaguePassword(null);
+			league.getUser().setPassword(null);;
+		}
 		return leaguesCreated;
 	}
 

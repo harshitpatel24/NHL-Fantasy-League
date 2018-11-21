@@ -20,6 +20,12 @@ public class ShowJoinedLeagueServiceImpl implements ShowJoinedLeagueService{
 		// TODO Auto-generated method stub
 		ArrayList<League> leaguesJoined= new ArrayList<League>();
 		leaguesJoined = leagueRepository.getJoinedLeague(userId);
+		
+		for(int i =0;i<leaguesJoined.size();i++) {
+			League league = leaguesJoined.get(i);
+			league.setLeaguePassword(null);
+			league.getUser().setPassword(null);
+		}
 		return leaguesJoined;
 	}
 
