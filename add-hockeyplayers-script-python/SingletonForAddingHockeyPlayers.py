@@ -1,6 +1,8 @@
-from __future__ import print_function
+#from __future__ import print_function
 import mysql.connector
 import json
+import sys
+import datetime
 class Singleton:
 
 	__instance = None
@@ -19,7 +21,7 @@ class Singleton:
 
 	def getConnection(self):
 		try:
-			conn=mysql.connector.connect(user="root", password="adkdpd00",host="localhost",database="NHLFantasyLeague")
+			conn=mysql.connector.connect(user="root", password="harshit24",host="localhost",database="NHLFantasyLeague")
 			return conn
 		except:
 			print("Database Connection Failed.....")
@@ -30,35 +32,71 @@ class Singleton:
 			jsonObjectList = json.load(players)
 		return jsonObjectList
 
-	def insretInToDb(self,connection,jsonObject):
+	def insretInToDb(self,connection,jsonObject,table):
 		try:
 			cursor = connection.cursor()
-			try:
-				cursor.execute("INSERT INTO hockeyPlayer(name,teamName,teamAbbr,playerRank,position,tShirtNo,age,height,weight,birthday) VALUES ('{0}','{1}','{2}',{3},'{4}',{5},{6},'{7}',{8},'{9}')".format(jsonObject['playerName'],jsonObject['teamName'],jsonObject['teamAbbrevation'],jsonObject['rank'],jsonObject['position'],jsonObject['tShirtNumber'],jsonObject['age'],jsonObject['height'],jsonObject['weight'],jsonObject['birthDate']))
-			except:
-				print('Error during Inserting')
-			connection.commit()
+			if table == 'Player':
+				try:
+					cursor.execute("INSERT INTO hockeyPlayer(name,teamName,teamAbbr,playerRank,position,tShirtNo,age,height,weight,birthday) VALUES ('{0}','{1}','{2}',{3},'{4}',{5},{6},'{7}',{8},'{9}')".format(jsonObject['playerName'],jsonObject['teamName'],jsonObject['teamAbbrevation'],jsonObject['rank'],jsonObject['position'],jsonObject['tShirtNumber'],jsonObject['age'],jsonObject['height'],jsonObject['weight'],jsonObject['birthDate']))
+				except:
+					print('Error during Inserting Player')
+				connection.commit()
+			elif table == 'Schedule':
+				try:
+					cursor.execute("INSERT INTO matchSchedule(team1,team2,date) VALUES ('{0}','{1}','{2}')".format(jsonObject['team1'],jsonObject['team2'],datetime.datetime.strptime(jsonObject['date'],"%Y-%m-%d").date()))
+					connection.commit()
+				except:
+					print('Error during Inserting Schedule')
+			else:
+				print("No Proper Table Given")
 			cursor.close()
 		except:
 			print("Unable to create cursor")
 
-	def saveJsonObjToDb(self,jsonObject):
+	def saveJsonObjToHockeyPlayerTable(self,jsonObject):
 		connection = self.getConnection()
-		self.insretInToDb(connection,jsonObject)
+		self.insretInToDb(connection,jsonObject,'Player')
+		connection.close()
+	
+	def saveJsonObjToScheduleTable(self,jsonObject):
+		connection = self.getConnection()
+		self.insretInToDb(connection,jsonObject,'Schedule')
 		connection.close()
 
-	def iterateAndSaveInDb(self,jsonObjectList):
+	def iterateAndSavePlayerInDb(self,jsonObjectList):
 		for jsonObject in jsonObjectList:
-			self.saveJsonObjToDb(jsonObject)
+			self.saveJsonObjToHockeyPlayerTable(jsonObject)
+	
+	def iterateAndSaveScheduleInDb(self,jsonObjectList):
+		for jsonObject in jsonObjectList:
+			self.saveJsonObjToScheduleTable(jsonObject)
 
-	def addToDb(self):
-		jsonObjectList = self.loadJson('final758PlayersData.json')
+	def addPlayersToDb(self,fileName):
+		jsonObjectList = self.loadJson(fileName)
 		#print(jsonObjectList)
 		#print(len(jsonObjectList))
-		self.iterateAndSaveInDb(jsonObjectList)
+		self.iterateAndSavePlayerInDb(jsonObjectList)
+	
+	def addScheduleToDb(self,fileName):
+		jsonObjectList = self.loadJson(fileName)
+		self.iterateAndSaveScheduleInDb(jsonObjectList)
 def main():
-	s = Singleton.getInstance()
-	s.addToDb()
+	
+	args=sys.argv
+	if len(args) == 1:
+		print("Exiting")
+	else:
+		s = Singleton.getInstance()
+		if len(args) == 2:
+			if args[1] == 'addPlayers':
+				s.addPlayersToDb('final758PlayersData.json')
+			elif args[1] == 'addSchedule':
+				s.addScheduleToDb('NHLFullSchedule.json')
+			else:
+				print("Wrong Argument")
+		elif len(args) == 3:
+			print("If you want to extend write code here")
+	
 
 if __name__ == '__main__':
 	main()
