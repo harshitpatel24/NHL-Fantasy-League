@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,12 +25,29 @@ public class ShowCreatedLeagueController {
 	ShowCreatedLeagueService showCreatedLeagueService;
 
 	@RequestMapping(value = "/api/showcreatedleague", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
-	public @ResponseBody JsonNode showCreatedLeague(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
+	public @ResponseBody JsonNode showCreatedLeague(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request,HttpSession session) {
 		ObjectMapper mapper = new ObjectMapper();
-		String createrIdStr = objNode.get("creatorId").toString();
-		int creatorId = Integer.parseInt(createrIdStr.substring(1,createrIdStr.length()-1));
-		ArrayList<League> createdLeagues = showCreatedLeagueService.getCreatedLeaguesService(creatorId);
-		JsonNode node = mapper.convertValue(createdLeagues, JsonNode.class);
+		JsonNode node = null;
+		ArrayList<League> createdLeagues = new ArrayList<League>();
+		
+		if(session.getAttribute("userid") == null)
+		{
+			node = mapper.convertValue(createdLeagues, JsonNode.class);
+		}
+		else
+		{
+			String createrIdStr = objNode.get("creatorId").toString();
+			int creatorId = Integer.parseInt(createrIdStr.substring(1,createrIdStr.length()-1));
+			if(Integer.parseInt(session.getAttribute("userid").toString()) == creatorId)
+			{
+				createdLeagues = showCreatedLeagueService.getCreatedLeaguesService(creatorId);
+				node = mapper.convertValue(createdLeagues, JsonNode.class);
+			}
+			else
+			{
+				node = mapper.convertValue(createdLeagues, JsonNode.class);
+			}
+		}
 		return node;
 	}
 }
