@@ -1,5 +1,6 @@
 package com.nhlFantasy.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,28 @@ public class LeagueMember{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "leagueid")
 	League league;
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public int getBudget() {
+		return budget;
+	}
+
+	public void setBudget(int budget) {
+		this.budget = budget;
+	}
+
+	@Column(name = "points")
+	int points;
+	
+	@Column(name = "budget")
+	int budget;
 	
 	public int getId() {
 		return id;
