@@ -3,6 +3,7 @@ import mysql.connector
 import json
 import sys
 import datetime
+import argparse
 class Singleton:
 
 	__instance = None
@@ -19,9 +20,9 @@ class Singleton:
 		else:
 			Singleton.__instance = self
 
-	def getConnection(self):
+	def getConnection(self,dbPassword):
 		try:
-			conn=mysql.connector.connect(user="root", password="harshit24",host="localhost",database="NHLFantasyLeague")
+			conn=mysql.connector.connect(user="root", password=dbPassword,host="localhost",database="NHLFantasyLeague")
 			return conn
 		except:
 			print("Database Connection Failed.....")
@@ -78,66 +79,57 @@ class Singleton:
 		except:
 			print("Unable to create cursor")
 
-	def saveJsonObjToHockeyPlayerTable(self,jsonObject):
-		connection = self.getConnection()
+	def saveJsonObjToHockeyPlayerTable(self,jsonObject,dbPassword):
+		connection = self.getConnection(dbPassword)
 		self.insretInToDb(connection,jsonObject,'Player')
 		connection.close()
 	
-	def saveJsonObjToScheduleTable(self,jsonObject):
-		connection = self.getConnection()
+	def saveJsonObjToScheduleTable(self,jsonObject,dbPassword):
+		connection = self.getConnection(dbPassword)
 		self.insretInToDb(connection,jsonObject,'Schedule')
 		connection.close()
 
-	def iterateAndSavePlayerInDb(self,jsonObjectList):
+	def iterateAndSavePlayerInDb(self,jsonObjectList,dbPassword):
 		for jsonObject in jsonObjectList:
-			self.saveJsonObjToHockeyPlayerTable(jsonObject)
+			self.saveJsonObjToHockeyPlayerTable(jsonObject,dbPassword)
 	
-	def iterateAndSaveScheduleInDb(self,jsonObjectList):
+	def iterateAndSaveScheduleInDb(self,jsonObjectList,dbPassword):
 		for jsonObject in jsonObjectList:
-			self.saveJsonObjToScheduleTable(jsonObject)
+			self.saveJsonObjToScheduleTable(jsonObject,dbPassword)
 
-	def addPlayersToDb(self,fileName):
+	def addPlayersToDb(self,fileName,dbPassword):
 		jsonObjectList = self.loadJson(fileName)
 		#print(jsonObjectList)
 		#print(len(jsonObjectList))
-		self.iterateAndSavePlayerInDb(jsonObjectList)
+		self.iterateAndSavePlayerInDb(jsonObjectList,dbPassword)
 	
-	def addScheduleToDb(self,fileName):
+	def addScheduleToDb(self,fileName,dbPassword):
 		jsonObjectList = self.loadJson(fileName)
-		self.iterateAndSaveScheduleInDb(jsonObjectList)
+		self.iterateAndSaveScheduleInDb(jsonObjectList,dbPassword)
 
 def main():
 	playersFile='final757PlayersData.json'
 	scheduleFile='NHLFullSchedule.json'
-	args=sys.argv
-	if len(args) == 1:
-		print("Exiting arguments required...")
-	else:
-		s = Singleton.getInstance()
-		if len(args) == 2:
-			if args[1] == 'addPlayers':
-				s.addPlayersToDb(playersFile)
-			elif args[1] == 'addSchedule':
-				s.addScheduleToDb(scheduleFile)
-			else:
-				print("Wrong Argument")
-		elif len(args) == 3:
-			if args[1] == 'addPlayers':
-				if args[2] == 'addSchedule':
-					s.addPlayersToDb(playersFile)
-					s.addScheduleToDb(scheduleFile)
-				else:
-					print("wrong arguments")
-			elif args[1] == 'addSchedule':
-				if args[2] == 'addPlayers':
-					s.addPlayersToDb(playersFile)
-					s.addScheduleToDb(scheduleFile)
-				else:
-					print("wrong arguments")
-			else:
-				print("wrong arguments")
-		else:
-			print("If you want to extend write code here")
+	
+	parser = argparse.ArgumentParser(description="NHL Database helper")
+	
+	parser.add_argument("--addPlayer", help="add Player", required=True)
+	parser.add_argument("--addSchedule", help="add Schedule", required=True)
+	parser.add_argument("--dbPassword", help="database password", required=True)
 
+	args = parser.parse_args()
+	if args.addPlayer == 'True' and args.addSchedule == 'True' and args.dbPassword:
+		s = Singleton.getInstance()
+		s.addPlayersToDb(playersFile,args.dbPassword)
+		s.addScheduleToDb(scheduleFile,args.dbPassword)
+	elif args.addPlayer == 'False' and args.addSchedule == 'True' and args.dbPassword:
+		s = Singleton.getInstance()
+		s.addScheduleToDb(scheduleFile,args.dbPassword)
+	elif args.addPlayer == 'True' and args.addSchedule == 'False' and args.dbPassword:
+		s = Singleton.getInstance()
+		s.addPlayersToDb(playersFile,args.dbPassword)
+	else:
+		print("Not Proper Arguments Given")
+	
 if __name__ == '__main__':
 	main()
