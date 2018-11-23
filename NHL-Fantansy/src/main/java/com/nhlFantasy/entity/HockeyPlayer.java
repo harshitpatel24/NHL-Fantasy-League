@@ -48,6 +48,25 @@ public class HockeyPlayer implements Serializable{
 	@Column(name = "birthday")
 	String birthday;
 	
+	@Column(name = "playerValue")
+	int playerValue;
+	
+	public String getTeamAbbr() {
+		return teamAbbr;
+	}
+
+	public void setTeamAbbr(String teamAbbr) {
+		this.teamAbbr = teamAbbr;
+	}
+
+	public int getPlayerValue() {
+		return playerValue;
+	}
+
+	public void setPlayerValue(int playerValue) {
+		this.playerValue = playerValue;
+	}
+
 	public int getPlayerId() {
 		return playerId;
 	}
