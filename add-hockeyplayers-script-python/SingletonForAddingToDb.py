@@ -58,7 +58,7 @@ class Singleton:
 			if table == 'Player':
 				if not self.checkAlreadyExists(jsonObject,table,cursor):
 					try:
-						cursor.execute("INSERT INTO hockeyPlayer(name,teamName,teamAbbr,playerRank,position,tShirtNo,age,height,weight,birthday) VALUES ('{0}','{1}','{2}',{3},'{4}',{5},{6},'{7}',{8},'{9}')".format(jsonObject['playerName'],jsonObject['teamName'],jsonObject['teamAbbrevation'],jsonObject['rank'],jsonObject['position'],jsonObject['tShirtNumber'],jsonObject['age'],jsonObject['height'],jsonObject['weight'],jsonObject['birthDate']))
+						cursor.execute("INSERT INTO hockeyPlayer(name,teamName,teamAbbr,playerRank,position,tShirtNo,age,height,weight,birthday,playerValue) VALUES ('{0}','{1}','{2}',{3},'{4}',{5},{6},'{7}',{8},'{9}',{10})".format(jsonObject['playerName'],jsonObject['teamName'],jsonObject['teamAbbrevation'],jsonObject['rank'],jsonObject['position'],jsonObject['tShirtNumber'],jsonObject['age'],jsonObject['height'],jsonObject['weight'],jsonObject['birthDate'],100))
 					except:
 						print('Error during Inserting Player')
 					connection.commit()
