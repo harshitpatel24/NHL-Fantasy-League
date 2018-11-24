@@ -38,4 +38,10 @@ export class LeagueService {
     
 
   }
+  showCreatedLeagues(usr){
+    let tempObj = {
+      "creatorId": usr.userid,
+    }
+    return this.http.post('/api/showcreatedleague', tempObj).pipe(map((response: Response) => response.json()));
+  }
 }

@@ -1,0 +1,83 @@
+<div class="container">
+    <a href="http://localhost:4200/users/1">  <!-- fix here -->
+      <div class="navbar-header">
+      <h1>NHL-Fantasy League</h1>
+      </div>
+    </a>
+</div>
+<mat-card class="example-card">
+<div class=created_leagues>
+    <div id = "title">Created League</div>
+    <form class="example-form">
+        <table class="example-full-width">
+          <tr>
+            <th>League Capacity</th>
+            <th>League Name</th>
+            <th>League Created By</th>
+          </tr>
+          <tr *ngFor="let l of league"> 
+              <!-- <td><span><img src={{student.photo}} width="100px" height="100px" /></span></td>                  -->
+              <td><span>{{l.leagueCapacity}}</span></td>
+              <td><span><a href="#">{{l.leagueName}}</a></span></td>
+              <td><span>{{l.user.uname}}</span></td> 
+        </tr>             
+        </table>
+      </form>
+    </div>
+
+        <div class=joined_leagues>
+            <div id = "title">Joined League</div>
+            <form class="example-form">
+                <table class="example-full-width">
+                  <tr>
+                      <th>League Capacity</th>
+                      <th>League Name</th>
+                      <th>League Created By</th>
+                    </tr>
+                    <tr *ngFor="let l of league">   
+             <!-- <td><span><img src={{student.photo}} width="100px" height="100px" /></span></td>                  -->
+             <td><span>{{l.leagueCapacity}}</span></td>
+             <td><span>{{l.leagueName}}</span></td>
+             <td><span>{{l.user.uname}}</span></td> 
+                  </tr>    
+                </table></form></div></mat-card>
+                <mat-card-actions>
+                    <button mat-raised-button (click)="goBack()" color="primary">Back</button>
+                  </mat-card-actions>
+<!-- <div layout-fill layout="column" layout-align="center none">
+  <div layout="row" layout-align="center none">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>View League</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      <div class=created_leagues>
+          <form class="example-form">
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <span>Created League</span>
+                  </td>
+                </tr>
+              </table></form></div>
+              <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      </mat-card-content>
+      <mat-card-content>
+      <div>
+        <form class="example-form">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                  <span>Joined League</span>
+              </td>
+            </tr>
+            </table>
+        </form>
+        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="submitLeague()" color="primary">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div> -->

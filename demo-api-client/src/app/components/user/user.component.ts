@@ -65,6 +65,9 @@ export class UserComponent implements OnInit {
     // this.joinLeagueForm = true;
 
   }
+  viewLeagues() {
+    this.router.navigate(['/view-league', this.user.userid]);
+  }
 
   submitProfile() {
 
