@@ -5,6 +5,7 @@ import { LoginComponent } from '../../components/login/login.component';
 import { WelcomeComponent } from '../../components/welcome/welcome.component';
 import { RegisterComponent } from '../../components/register/register.component';
 import { CreateLeagueComponent } from '../../components/create-league/create-league.component'; 
+import { JoinLeagueComponent } from '../../components/join-league/join-league.component'; //mohit
 import { AppComponent } from 'src/app/app.component';
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'users/:id', component: UserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'create-league/:id', component: CreateLeagueComponent }
+  { path: 'create-league/:id', component: CreateLeagueComponent },
+  { path: 'join-league/:id', component: JoinLeagueComponent }  //mohit
 ];
 
 @NgModule({

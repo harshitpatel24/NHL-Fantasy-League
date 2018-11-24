@@ -1,0 +1,23 @@
+body{
+    padding : 0px;
+    margin : 0px;
+    background-color: white;
+}
+
+h1{
+    padding : 0px;
+    margin : 0px;
+    color: black;
+    text-align: center;
+    padding : 25px;
+}
+.container {
+    background-color: rgb(122, 122, 255);
+    height: 100px;
+}
+.example-card{
+    background-color: rgb(255, 255, 144);
+}
+a{
+    text-decoration: none;
+}

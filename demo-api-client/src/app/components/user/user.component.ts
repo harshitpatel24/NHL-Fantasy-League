@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
   inactive: boolean = true;
   editButton: boolean = false; 
   submitButton: boolean = true; 
-  joinLeagueForm: boolean = false;
+  // joinLeagueForm: boolean = false;  mohit
   joinLeagueButton: boolean = true; 
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
@@ -60,8 +60,9 @@ export class UserComponent implements OnInit {
   }
 
   joinLeague() {
-    this.joinLeagueButton = false;
-    this.joinLeagueForm = true;
+    this.router.navigate(['/join-league', this.user.userid]);  //mohit
+    // this.joinLeagueButton = false;
+    // this.joinLeagueForm = true;
 
   }
 
