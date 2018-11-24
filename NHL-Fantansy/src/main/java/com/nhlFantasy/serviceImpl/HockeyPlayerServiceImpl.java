@@ -9,7 +9,7 @@ import com.nhlFantasy.dao.HockeyPlayerRepository;
 import com.nhlFantasy.entity.HockeyPlayer;
 import com.nhlFantasy.service.HockeyPlayerService;
 
-@Service
+@Service("HockeyPlayerService")
 public class HockeyPlayerServiceImpl implements HockeyPlayerService{
 
 	@Autowired
