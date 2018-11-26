@@ -13,5 +13,8 @@ public interface HockeyPlayerRepository extends JpaRepository<HockeyPlayer, Long
 	@Query(nativeQuery = true, value = "select * from hockeyPlayer h where h.teamName = :teamName")
 	List<HockeyPlayer> findAllHockeyPlayersByTeam(@Param("teamName") String teamName);
 	
+	@Query(nativeQuery = true, value = "select distinct(h.teamName) from hockeyPlayer h")
+	List<String> getTeams();
+	
 	
 }

@@ -22,5 +22,10 @@ public class HockeyPlayerServiceImpl implements HockeyPlayerService{
 		
 		return hockeyPlayerRepository.findAllHockeyPlayersByTeam(teamName);
 	}
+	@Override
+	public List<String> getTeams() {
+		// TODO Auto-generated method stub
+		return hockeyPlayerRepository.getTeams();
+	}
 
 }

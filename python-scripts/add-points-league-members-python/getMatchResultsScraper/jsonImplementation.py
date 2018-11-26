@@ -12,8 +12,11 @@ class Json:
 		goalScorersList=[]
 		scoreSummary = self.fetchScoreSummary(jsonObject)
 		for teamName,teamGoalsSummary in scoreSummary.items():
-			for goalSummary in teamGoalsSummary:
-				goalScorersList.append(goalSummary['scoredBy'])
+			if teamGoalsSummary == []:
+				pass
+			else:
+				for goalSummary in teamGoalsSummary:
+					goalScorersList.append(goalSummary['scoredBy'])
 		return goalScorersList
 
 	def fetchAssistPlayers(self,jsonObject):
