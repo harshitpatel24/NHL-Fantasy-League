@@ -15,9 +15,12 @@ class goalPointVisitor(Visitor):
 		pass
 		
 	def visitLeagueMember(self,LeagueMember,playerIdList,dbPassword):
-		print("in LeagueMember from goal PointVisitor", playerIdList)
+		print("Visit League Member for adding Goal Points...")
+		dbImplObj = dbImpl.Database()
+		dbImplObj.addPointsToDb(dbPassword, 'leagueMember', playerIdList, self.goalPoint)
 
 	def visitMemberTeam(self,MemberTeam,playerIdList,dbPassword):
+		print("Visit Member Team for adding Goal Points...")
 		dbImplObj = dbImpl.Database()
 		dbImplObj.addPointsToDb(dbPassword,'memberTeam',playerIdList,self.goalPoint)
 	
@@ -27,9 +30,12 @@ class assistPointVisitor(Visitor):
 		pass
 		
 	def visitLeagueMember(self,LeagueMember,playerIdList,dbPassword):
-		print("in LeagueMember from assistPointVisitor",playerIdList)
+		print("Visit League Member for adding Assist Points...")
+		dbImplObj = dbImpl.Database()
+		dbImplObj.addPointsToDb(dbPassword, 'leagueMember', playerIdList, self.assistPoint)
 	
 	def visitMemberTeam(self,MemberTeam,playerIdList,dbPassword):
+		print("Visit Member Team for adding Assist Points...")
 		dbImplObj = dbImpl.Database()
 		dbImplObj.addPointsToDb(dbPassword, 'memberTeam', playerIdList, self.assistPoint)
 

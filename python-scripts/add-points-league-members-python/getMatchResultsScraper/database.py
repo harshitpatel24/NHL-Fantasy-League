@@ -57,15 +57,14 @@ class Database:
 		except:
 			return ()
 
-	def addPointsToMembers(self,memberTeams,goalPoint,dbPassword):
+	def addPointsToMemberTeams(self,memberTeams,point,dbPassword):
 		for memberTeam in memberTeams:
-			print(memberTeam[2],memberTeam[3])
 			try:
 				connectionObj = self.getConnection(dbPassword)
 				try:
 					cursorObj = self.getCursor(connectionObj)
 					try:
-						cursorObj.execute("update memberTeam set pointsEarned = {0} where playerId = {1} and memberId = {2}".format(memberTeam[1]+goalPoint,memberTeam[2],memberTeam[3]))
+						cursorObj.execute("update memberTeam set pointsEarned = {0} where playerId = {1} and memberId = {2}".format(memberTeam[1]+point,memberTeam[2],memberTeam[3]))
 						connectionObj.commit()
 						connectionObj.close()
 					except:
@@ -75,21 +74,44 @@ class Database:
 			except:
 				pass
 
+	def addPointsToLeagueMembers(self,leagueMember,point,dbPassword):
+		try:
+			connectionObj = self.getConnection(dbPassword)
+			try:
+				cursorObj = self.getCursor(connectionObj)
+				try:
 
+					cursorObj.execute("select * from leagueMember where id = {0}".format(int(leagueMember[3])))
+					getExistingPoint = cursorObj.fetchone()
+					cursorObj.execute("update leagueMember set points = {0} where id = {1}".format(getExistingPoint[2] + point,leagueMember[3]))
+					connectionObj.commit()
+					connectionObj.close()
+				except:
+					pass
+			except:
+				pass
+		except:
+			pass
 
 	def addPointsToDb(self,dbPassword,tableName,playerIdList,point):
 		if tableName == 'memberTeam':
-			print("from memberTeam for adding Goals")
 			for playerId in playerIdList:
-				print("player id",playerId)
+				#print("player id",playerId)
 				memberTeams = self.findTeamIdByPlayerId(playerId,dbPassword)
-				self.addPointsToMembers(memberTeams,point,dbPassword)
+				self.addPointsToMemberTeams(memberTeams,point,dbPassword)
 
 
 		elif tableName == 'leagueMember':
+			for playerId in playerIdList:
+				leagueMembers = self.findTeamIdByPlayerId(playerId, dbPassword)
+				for leagueMember in leagueMembers:
+					self.addPointsToLeagueMembers(leagueMember, point, dbPassword)
+				#leagueMembers = self.findTeamIdByPlayerId(playerId, dbPassword)
+				#self.addPointsToMembers(memberTeams, point, dbPassword)
+				#print('playerId',playerId)
 			#print("from leagueMember for adding Goals")
 			#print(playerIdList)
-			pass
+
 		else:
 			pass
 
