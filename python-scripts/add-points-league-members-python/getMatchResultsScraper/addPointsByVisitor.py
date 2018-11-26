@@ -16,7 +16,8 @@ def main():
 	#creating objects
 	jsonImplObj = jsonImpl.Json()
 	dbImplObj = dbImpl.Database()
-	MemberVisitorObj = visitorImpl.MemberVisitor()
+	goalPointVisitorObj = visitorImpl.goalPointVisitor()
+	assistPointVisitorObj = visitorImpl.assistPointVisitor()
 	leagueMemberObj = visitorImpl.LeagueMember()
 	memberTeamObj = visitorImpl.MemberTeam()
 	
@@ -38,11 +39,17 @@ def main():
 	goalScorrersIdList = dbImplObj.getPlayerIdsFromDb(connectionObj,goalScorersList)
 	assistPlayersIdsList = dbImplObj.getPlayerIdsFromDb(connectionObj,assistPlayersList)
 	connectionObj.close()	
-		
-	#calling accept of leagueMemberObj and memberTeamObj to visit each leagueMember and memberTeam to add points
-	leagueMemberObj.accept(MemberVisitorObj)
-	memberTeamObj.accept(MemberVisitorObj)
 	
+	#calling accept of leagueMemberObj and memberTeamObj to visit each leagueMember and memberTeam to add Goal points
+	memberTeamObj.accept(goalPointVisitorObj, goalScorrersIdList, dbPassword)
+	#leagueMemberObj.accept(goalPointVisitorObj,goalScorrersIdList,dbPassword)
 
+	
+	#calling accept of leagueMemberObj and memberTeamObj to visit each leagueMember and memberTeam to add Assist points
+	memberTeamObj.accept(assistPointVisitorObj, assistPlayersIdsList, dbPassword)
+	#leagueMemberObj.accept(assistPointVisitorObj,assistPlayersIdsList,dbPassword)
+
+	
+	
 if __name__ == '__main__':
 	main()

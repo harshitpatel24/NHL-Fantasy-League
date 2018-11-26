@@ -82,17 +82,23 @@ class GetmatchresultfordeltaSpider(scrapy.Spider):
 				break
 			elif time == []:
 				flag = True
-			else:
-				#time1=time[0]
-				#playerScored=
-				flag = False
-				tempDict['time']= time[0]
-				tempDict['scoredBy']= participatedPlayersInGoal[0]
-				tempDict['AssistBy']=participatedPlayersInGoal[1:]
-				if team1ShortName == scoredTeamName[0]:
-					team1ScoringList.append(tempDict)
-				else:
-					team2ScoringList.append(tempDict)
+			elif type((time[0])) == str:
+				try:
+					if type(int(time[0])) == int:
+						break
+					else:
+						pass
+				except:
+					#time1=time[0]
+					#playerScored=
+					flag = False
+					tempDict['time']= time[0]
+					tempDict['scoredBy']= participatedPlayersInGoal[0]
+					tempDict['AssistBy']=participatedPlayersInGoal[1:]
+					if team1ShortName == scoredTeamName[0]:
+						team1ScoringList.append(tempDict)
+					else:
+						team2ScoringList.append(tempDict)
 			count = count + 1
 		
 		g1=response.xpath('//*[@id="'+self.teamDict[response.meta['team1']]+'_goalies"]/tbody/tr/td[1]/a/text()').extract()

@@ -6,4 +6,6 @@ import com.nhlFantasy.entity.HockeyPlayer;
 public interface HockeyPlayerService {
 
 	List<HockeyPlayer> findAllHockeyPlayerByTeam(String teamName);
+
+	List<String> getTeams();
 }
