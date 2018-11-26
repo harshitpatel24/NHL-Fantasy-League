@@ -18,7 +18,7 @@ import { LeagueComponent } from './components/league/league.component';
 import { CreateLeagueComponent } from './components/create-league/create-league.component';
 import { JoinLeagueComponent } from './components/join-league/join-league.component';
 import { ViewLeagueComponent } from './components/view-league/view-league.component';
-
+import { LeagueDashboardComponent } from './components/league-dashboard/league-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,8 @@ import { ViewLeagueComponent } from './components/view-league/view-league.compon
     LeagueComponent,
     CreateLeagueComponent,
     JoinLeagueComponent,
-    ViewLeagueComponent
+    ViewLeagueComponent,
+    LeagueDashboardComponent,
   ],
   imports: [
     BrowserModule,

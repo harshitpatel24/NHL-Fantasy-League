@@ -11,7 +11,8 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 })
 export class ViewLeagueComponent implements OnInit {
 
-  league: League[];
+  createdleague: League[];
+  joinedleague: League[];
   user: User;
   id: number;
   constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute) { }
@@ -30,16 +31,12 @@ export class ViewLeagueComponent implements OnInit {
       }
 
         this.leagueService.showCreatedLeagues(usr).subscribe(data => {
-        this.league = data;
-        console.log(this.league);
-        for(var i = 0; i < data.length; i++) {
-          var obj = data[i];
-          console.log(obj.leagueId);
-      }
+        this.createdleague = data;
+      });
+
+      this.leagueService.showJoinedLeagues(usr).subscribe(data =>{
+        this.joinedleague = data;
       });
    }
    }
-   goBack() {
-    this.router.navigate(['users/:id', this.user.userid]);
-  }
 }

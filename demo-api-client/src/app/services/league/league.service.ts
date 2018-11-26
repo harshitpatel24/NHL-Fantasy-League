@@ -44,4 +44,28 @@ export class LeagueService {
     }
     return this.http.post('/api/showcreatedleague', tempObj).pipe(map((response: Response) => response.json()));
   }
+  showJoinedLeagues(usr){
+    let tempObj = {
+      "userId": usr.userid,
+    }
+    return this.http.post('/api/showjoinedleague', tempObj).pipe(map((response: Response) => response.json()));
+  }
+  getMatchSchedule(date){
+    let tempObj = {
+      "date": date,
+    }
+    return this.http.post('/api/getMatchBydate', tempObj).pipe(map((response: Response) => response.json()));
+  }
+  getLeagueLeaders(leagueid){
+    let tempObj = {
+      "leagueId": leagueid,
+    }
+    return this.http.post('/api/getLeagueLeaders', tempObj).pipe(map((response: Response) => response.json()));
+  }
+  getLeagueByLeagueId(leagueid){
+    let tempObj = {
+      "leagueId": leagueid,
+    }
+    return this.http.post('/api/getLeagueByLeagueId', tempObj).pipe(map((response: Response) => response.json()));
+  }
 }

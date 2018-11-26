@@ -2,6 +2,7 @@ body{
     padding : 0px;
     margin : 0px;
     background-color: white;
+    box-sizing: border-box;
 }
 
 h1{
@@ -16,8 +17,8 @@ h1{
     height: 100px;
 }
 .example-card{
-    background-color: rgb(255, 255, 144);
-    height: 100%;
+    background-color: rgb(255, 255, 144);  
+    height: auto;
 }
 a{
     text-decoration: none;
@@ -42,4 +43,8 @@ table, th, td {
     border: 1px solid black;
     text-align: center;
     padding:10px;
+}
+.leagues{
+    background-color: rgb(255, 255, 144);
+    height: 100%;
 }

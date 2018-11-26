@@ -33,7 +33,9 @@
           </tr></table>
         </form>
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+        
       </mat-card-content>
+      <app-view-league></app-view-league>
       <div class= row>
         <!-- <mat-card-actions>  -->
           <button id = "editProfile" mat-raised-button (click)="editProfile()" color="primary" [disabled]="getEditButton()">Edit Profile</button>
