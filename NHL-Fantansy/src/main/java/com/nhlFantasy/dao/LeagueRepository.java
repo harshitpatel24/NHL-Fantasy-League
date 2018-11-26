@@ -29,6 +29,9 @@ public interface LeagueRepository extends JpaRepository<League, Long>{
 	@Query(nativeQuery = true, value = "select * from League l where l.creatorId = :creatorId")
 	ArrayList<League> getCreatedLeague(@Param("creatorId")int creatorId);
 	
+	@Query(nativeQuery = true, value = "select * from League l where l.leagueId = :leagueId")
+	League getLeagueByLeagueId(@Param("leagueId")int leagueId);
+	
 	@Query(nativeQuery = true, value =  "select l.* from league l , leaguemember lm " + 
 										"where l.creatorId <> :userId " + 
 										"and l.leagueid = lm.leagueid " + 

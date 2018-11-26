@@ -59,5 +59,21 @@ public class LeagueServiceImpl implements LeagueService{
 	{
 		return leagueRepository.findLeagueById(leagueId);
 	}
+	@Override
+	public League getLeagueByLeagueId(int leagueId) {
+		// TODO Auto-generated method stub
+		League league = null;
+		
+		try 
+		{
+		    league = leagueRepository.getLeagueByLeagueId(leagueId);
+		}
+		catch(Exception e) 
+		{
+			league = new League();
+			league.setLeagueId(-1);
+		}
+		return league;
+	}
 
 }
