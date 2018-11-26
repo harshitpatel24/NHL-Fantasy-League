@@ -8,4 +8,5 @@ public interface LeagueService {
 	League findLeague(int leagueId, String leaguePassword);
 	int findLeagueCapacity(int leagueId);
 	League findLeagueById(int leagueId);
+	League getLeagueByLeagueId(int leagueId);
 }

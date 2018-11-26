@@ -29,7 +29,7 @@ public class LeagueController {
 	
 	@RequestMapping(value = "/api/addLeague", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody JsonNode addLeague(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
-		System.out.println(objNode.toString());
+		//System.out.println(objNode.toString());
 		ObjectMapper mapper = new ObjectMapper();
 		User user = new User();
 		user.setUserid(Integer.parseInt(objNode.get("creatorId").get("userid").toString()));
@@ -60,4 +60,14 @@ public class LeagueController {
 		
 		return node;
 	}
+	
+		@RequestMapping(value = "/api/getLeagueByLeagueId", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+		public @ResponseBody JsonNode getLeague(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
+			ObjectMapper mapper = new ObjectMapper();
+			League leagueObj = null;
+			int leagueId = Integer.parseInt(objNode.get("leagueId").toString()); 
+			leagueObj=leagueService.getLeagueByLeagueId(leagueId);
+			JsonNode node = mapper.convertValue(leagueObj, JsonNode.class);
+			return node;
+		}
 }
