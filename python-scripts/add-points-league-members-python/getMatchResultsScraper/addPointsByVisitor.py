@@ -42,12 +42,12 @@ def main():
 	
 	#calling accept of leagueMemberObj and memberTeamObj to visit each leagueMember and memberTeam to add Goal points
 	memberTeamObj.accept(goalPointVisitorObj, goalScorrersIdList, dbPassword)
-	#leagueMemberObj.accept(goalPointVisitorObj,goalScorrersIdList,dbPassword)
+	leagueMemberObj.accept(goalPointVisitorObj,goalScorrersIdList,dbPassword)
 
 	
 	#calling accept of leagueMemberObj and memberTeamObj to visit each leagueMember and memberTeam to add Assist points
 	memberTeamObj.accept(assistPointVisitorObj, assistPlayersIdsList, dbPassword)
-	#leagueMemberObj.accept(assistPointVisitorObj,assistPlayersIdsList,dbPassword)
+	leagueMemberObj.accept(assistPointVisitorObj,assistPlayersIdsList,dbPassword)
 
 	
 	

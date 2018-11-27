@@ -7,7 +7,6 @@ import argparse
 class Singleton:
 
 	__instance = None
-
 	@staticmethod
 	def getInstance():
 		if Singleton.__instance == None:
@@ -52,13 +51,22 @@ class Singleton:
 			print("No Proper Table Given")
 			return True
 
+	def getPlayerValue(self,rank):
+		rankRange = [1,10,20,50,100,150,200,999]
+		playerValueRange = [12,8,6,5,3,2,1]
+		for i in range(len(rankRange)-1):
+			if rank >= rankRange[i] and rank <= rankRange[i+1]:
+				return playerValueRange[i]
+			
+			
 	def insretInToDb(self,connection,jsonObject,table):
 		try:
 			cursor = connection.cursor()
 			if table == 'Player':
 				if not self.checkAlreadyExists(jsonObject,table,cursor):
 					try:
-						cursor.execute("INSERT INTO hockeyPlayer(name,teamName,teamAbbr,playerRank,position,tShirtNo,age,height,weight,birthday,playerValue) VALUES ('{0}','{1}','{2}',{3},'{4}',{5},{6},'{7}',{8},'{9}',{10})".format(jsonObject['playerName'],jsonObject['teamName'],jsonObject['teamAbbrevation'],jsonObject['rank'],jsonObject['position'],jsonObject['tShirtNumber'],jsonObject['age'],jsonObject['height'],jsonObject['weight'],jsonObject['birthDate'],100))
+						playerValue = self.getPlayerValue(int(jsonObject['rank']))
+						cursor.execute("INSERT INTO hockeyPlayer(name,teamName,teamAbbr,playerRank,position,tShirtNo,age,height,weight,birthday,playerValue) VALUES ('{0}','{1}','{2}',{3},'{4}',{5},{6},'{7}',{8},'{9}',{10})".format(jsonObject['playerName'],jsonObject['teamName'],jsonObject['teamAbbrevation'],jsonObject['rank'],jsonObject['position'],jsonObject['tShirtNumber'],jsonObject['age'],jsonObject['height'],jsonObject['weight'],jsonObject['birthDate'],playerValue))
 					except:
 						print('Error during Inserting Player')
 					connection.commit()

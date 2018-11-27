@@ -61,4 +61,23 @@ public class HockeyPlayerController {
 		return node;
 	}
 	
+	
+	@RequestMapping(value = "/api/getAllPlayers", method = RequestMethod.GET,consumes = "application/json", produces = "application/json")
+	public @ResponseBody JsonNode getAllPlayers(HttpServletResponse response, HttpServletRequest  request) {
+	
+		ObjectMapper mapper = new ObjectMapper();
+		List<HockeyPlayer> teams = hockeyPlayerService.getAllPlayers();
+		
+		for (HockeyPlayer team : teams) {
+			System.out.println(team);
+		}
+		
+		//System.out.println("list of hockey players = " + hockeyPlayers.size());
+		JsonNode node = null;
+		
+		node = mapper.convertValue(teams, JsonNode.class);
+		
+		return node;
+	}
+	
 }
