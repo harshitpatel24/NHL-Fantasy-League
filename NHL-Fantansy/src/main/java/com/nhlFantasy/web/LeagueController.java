@@ -54,7 +54,7 @@ public class LeagueController {
 			leagueMember.setUser(user);
 			leagueMember.setLeague(leagueObjForSave);
 			leagueMember.setPoints(0);
-			leagueMember.setBudget(80);
+			leagueMember.setBudget(8);
 			LeagueMember leagueMemberObj = leagueMemberService.addLeagueMember(leagueMember);
 		}
 		return node;
