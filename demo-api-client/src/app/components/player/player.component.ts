@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { League } from '../../models/league.model';
 // import { User } from '../../models/user.model';
-import { PlayerService } from '../../services/league/league.service'; 
+import { PlayerService } from '../../services/player/player.service'; 
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 @Component({

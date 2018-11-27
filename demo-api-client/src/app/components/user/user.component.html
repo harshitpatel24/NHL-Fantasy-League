@@ -9,48 +9,17 @@
       <mat-card-header>
         <mat-card-title *ngIf="user">{{user.uname}}</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <form class="example-form">
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input *ngIf="user" matInput placeholder="Name" [(ngModel)]="user.uname" name="name" [disabled]="getDisabled()">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                <input *ngIf="user" matInput placeholder="E-Mail" [(ngModel)]="user.email" name="username" [disabled]="getDisabled()">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-            <td><mat-form-field class="example-full-width">
-              <input *ngIf="user" matInput placeholder="Password" [(ngModel)]="user.password" type="password" name="password" [disabled]="getDisabled()">
-            </mat-form-field></td>
-          </tr></table>
-        </form>
-        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-        
-      </mat-card-content>
       <app-view-league></app-view-league>
       <div class= row>
         <!-- <mat-card-actions>  -->
-          <button id = "editProfile" mat-raised-button (click)="editProfile()" color="primary" [disabled]="getEditButton()">Edit Profile</button>
-        <!-- </mat-card-actions> -->
-        <!-- <mat-card-actions> -->
-          <button id = "submitProfile" mat-raised-button (click)="submitProfile()" color="primary" [disabled]="getSubmitButton()">Submit</button>
+          <button id = "editProfile" mat-raised-button (click)="editProfile()" color="primary">Edit Profile</button>
         <!-- </mat-card-actions> -->
         <!-- <mat-card-actions> -->
           <button id = "createLeague" mat-raised-button (click)="createLeague()" color="primary">Create League</button>
         <!-- </mat-card-actions> -->
         <!-- <mat-card-actions> -->
           <button id = "joinLeague"  mat-raised-button (click)="joinLeague()" color="primary">Join League</button>
-          <!-- <app-join-league *ngIf="joinLeagueForm" [user]="user"></app-join-league>  *ngIf="joinLeagueButton" mohit -->  
-        <!-- </mat-card-actions> -->
-        <button id = "viewLeague"  mat-raised-button (click)="viewLeagues()" color="primary">View Leagues</button>
+          <app-join-league *ngIf="joinLeagueForm" [user]="user"></app-join-league> 
       </div>
     </mat-card>
   </div>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CustomMaterialModule } from './core/material.module';
+import { MatCheckboxModule, MatPaginatorModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http'
 
@@ -19,6 +20,9 @@ import { CreateLeagueComponent } from './components/create-league/create-league.
 import { JoinLeagueComponent } from './components/join-league/join-league.component';
 import { ViewLeagueComponent } from './components/view-league/view-league.component';
 import { LeagueDashboardComponent } from './components/league-dashboard/league-dashboard.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { SelectPlayersComponent } from './components/select-players/select-players.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +35,8 @@ import { LeagueDashboardComponent } from './components/league-dashboard/league-d
     JoinLeagueComponent,
     ViewLeagueComponent,
     LeagueDashboardComponent,
+    UserEditComponent,
+    SelectPlayersComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,9 @@ import { LeagueDashboardComponent } from './components/league-dashboard/league-d
     HttpModule,
     RoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatPaginatorModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

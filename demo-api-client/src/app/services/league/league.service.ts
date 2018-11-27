@@ -12,7 +12,6 @@ export class LeagueService {
   constructor(private http: Http) { }
 
   addLeague(league: League){
-    console.log(league);
 
     let tempObj = {
       "leagueName": league.leagueName,

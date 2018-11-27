@@ -15,6 +15,8 @@ export class ViewLeagueComponent implements OnInit {
   joinedleague: League[];
   user: User;
   id: number;
+  path: any;
+
   constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute) { }
 
  
@@ -23,6 +25,8 @@ export class ViewLeagueComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
    });
+
+   this.path = this.router.url + '/league/';
 
    if (this.id != null)
    {

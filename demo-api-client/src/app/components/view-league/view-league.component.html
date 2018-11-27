@@ -19,7 +19,7 @@
           <tr *ngFor="let l of createdleague"> 
               <!-- <td><span><img src={{student.photo}} width="100px" height="100px" /></span></td>                  -->
               <td><span>{{l.leagueCapacity}}</span></td>
-              <td><span><a [routerLink]="[l.leagueId]">{{l.leagueName}}</a></span></td>
+              <td><span><a [routerLink]="path + l.leagueId">{{l.leagueName}}</a></span></td>
               <td><span>{{l.user.uname}}</span></td> 
         </tr>             
         </table>
@@ -38,12 +38,9 @@
                     <tr *ngFor="let l of joinedleague">   
              <!-- <td><span><img src={{student.photo}} width="100px" height="100px" /></span></td>                  -->
              <td><span>{{l.leagueCapacity}}</span></td>
-             <td><span><a [routerLink]="[l.leagueId]">{{l.leagueName}}</a></span></td>
+             <td><span><a [routerLink]="path + l.leagueId">{{l.leagueName}}</a></span></td>
              <td><span>{{l.user.uname}}</span></td> 
                   </tr>    
                 </table></form></div>
               </mat-card>
             </div>
-                <mat-card-actions>
-                    <button mat-raised-button (click)="goBack()" color="primary">Back</button>
-                  </mat-card-actions>

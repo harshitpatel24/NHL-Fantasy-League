@@ -12,6 +12,13 @@ export class PlayerService {
 
   constructor(private http: Http) { }
 
+  getPlayersByTeam(team: String){
+    let tempObj = {
+      "teamName": team
+    }
+
+    return this.http.post('/api/getAllPlayersbyTeam', tempObj).pipe(map((response: Response) => response.json()));
+  }
  
   
 }
