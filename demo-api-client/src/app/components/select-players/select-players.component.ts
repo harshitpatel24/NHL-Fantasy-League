@@ -33,7 +33,6 @@ export class SelectPlayersComponent implements OnInit {
         this.checkedDataSource.data = this.data;
       });
 
-      console.log(this.member)
     }
    
   

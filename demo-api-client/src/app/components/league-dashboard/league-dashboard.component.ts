@@ -26,34 +26,30 @@ export class LeagueDashboardComponent implements OnInit {
   constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.leagueid = +params['leagueid'];
-      this.id = +params['id'];
-   });
+      this.route.params.subscribe(params => {
+        this.leagueid = +params['leagueid'];
+        this.id = +params['id'];
+      });
 
-   if (this.leagueid != null)
-   {
-    //  let usr = {
-    //    userid: this.id
-    //   }
-      this.leagueMember = { leagueId: this.leagueid, userId: this.id };
-      var month = this.today.getMonth()+1;
-      var currentdate = this.today.getFullYear()+"-"+ month+"-"+ this.today.getDate();
-        this.leagueService.getMatchSchedule(currentdate).subscribe(data => {
-        this.matchschedule = data;
-      });
-      this.leagueService.getLeagueLeaders(this.leagueid).subscribe(data => {
-        this.leagueLeaders = data;
-      });
-      this.getLeagueByLeagueId();
-   }
+      if (this.leagueid != null)
+      {
+        this.leagueMember = { leagueId: this.leagueid, userId: this.id };
+        var month = this.today.getMonth()+1;
+        var currentdate = this.today.getFullYear()+"-"+ month+"-"+ this.today.getDate();
+          this.leagueService.getMatchSchedule(currentdate).subscribe(data => {
+          this.matchschedule = data;
+        });
+        this.leagueService.getLeagueLeaders(this.leagueid).subscribe(data => {
+          this.leagueLeaders = data;
+        });
+        this.getLeagueByLeagueId();
+      }
   }
 
   getLeagueByLeagueId(){
       this.leagueService.getLeagueByLeagueId(this.leagueid).subscribe(data => {
       this.league = data;
-      this.leagueName = this.league.leagueName;
-  });
+      this.leagueName = this.league.leagueName;});
   }
 }
   
