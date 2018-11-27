@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { PlayerService } from '../../services/player/player.service';
+import { LeagueMember } from '../../models/league-member.model';
 
 
 @Component({
@@ -15,21 +16,24 @@ export class SelectPlayersComponent implements OnInit {
   rank: any;
   position: any;
   playerValue: any;
-  teamAbbr: any; 
+  teamAbbr: any;
   checkedData = [];  
+  @Input() member: {};
        
   constructor(private playerService: PlayerService) { }
      
    ngOnInit(){
-      this.playerService.getPlayersByTeam("Toronto Maple Leafs").subscribe(data => { //! TEMP HARD-CODED LEAFS 
+      this.playerService.getAllPlayers().subscribe(data => {
         this.name = data;
         this.position = data;
         this.rank = data;
         this.playerValue = data;
         this.teamAbbr = data;
         this.dataSource.data = (data as Element[]);
-        this.checkedDataSource.data = this.data;  
+        this.checkedDataSource.data = this.data;
       });
+
+      console.log(this.member)
     }
    
   

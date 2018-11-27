@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from "rxjs/operators";
 import { User } from '../../models/user.model';
@@ -18,6 +18,12 @@ export class PlayerService {
     }
 
     return this.http.post('/api/getAllPlayersbyTeam', tempObj).pipe(map((response: Response) => response.json()));
+  }
+
+  getAllPlayers(){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    //let options = new RequestOptions({ headers: headers });
+    return this.http.get('/api/getAllPlayers', {headers: headers}).pipe(map((response: Response) => response.json()));
   }
  
   

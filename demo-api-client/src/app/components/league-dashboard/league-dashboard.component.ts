@@ -21,21 +21,22 @@ export class LeagueDashboardComponent implements OnInit {
   leagueid : number;
   league : League;
   leagueName : string;
+  leagueMember: {};
 
   constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-
     this.route.params.subscribe(params => {
       this.leagueid = +params['leagueid'];
+      this.id = +params['id'];
    });
 
    if (this.leagueid != null)
    {
-     let usr = {
-       userid: this.id
-      }
+    //  let usr = {
+    //    userid: this.id
+    //   }
+      this.leagueMember = { leagueId: this.leagueid, userId: this.id };
       var month = this.today.getMonth()+1;
       var currentdate = this.today.getFullYear()+"-"+ month+"-"+ this.today.getDate();
         this.leagueService.getMatchSchedule(currentdate).subscribe(data => {
