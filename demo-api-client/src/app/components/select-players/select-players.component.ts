@@ -3,6 +3,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { PlayerService } from '../../services/player/player.service';
 import { LeagueMember } from '../../models/league-member.model';
+import { League } from '../../models/league.model';
+import { User } from '../../models/user.model';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class SelectPlayersComponent implements OnInit {
   playerValue: any;
   teamAbbr: any;
   checkedData = [];  
-  @Input() member: {};
+  @Input() member: any;
        
   constructor(private playerService: PlayerService) { }
      
@@ -32,6 +34,14 @@ export class SelectPlayersComponent implements OnInit {
         this.dataSource.data = (data as Element[]);
         this.checkedDataSource.data = this.data;
       });
+      let leagueMember = new LeagueMember();
+      let user = new User();
+      user.userid = this.member.userId;
+      let league = new League();
+      league.leagueId = this.member.leagueId;
+      leagueMember.user = user;
+      leagueMember.league = league; 
+      //this.playerService.getPlayersByMember()
 
     }
    
