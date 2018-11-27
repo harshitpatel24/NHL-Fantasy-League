@@ -1,0 +1,50 @@
+body{
+    padding : 0px;
+    margin : 0px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+h1{
+    padding : 0px;
+    margin : 0px;
+    color: black;
+    text-align: center;
+    padding : 25px;
+}
+.container {
+    background-color: rgb(122, 122, 255);
+    height: 100px;
+}
+.example-card{
+    background-color: rgb(255, 255, 144);  
+    height: auto;
+}
+a{
+    text-decoration: none;
+}
+.created_leagues{
+    width: 50%;
+    float:left;
+}
+#title{
+    padding :20px;
+    text-align: center;
+    font-weight: bold
+    
+}
+table {
+    border-collapse: collapse;
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding:10px;
+}
+.leagues{
+    background-color: rgb(255, 255, 144);
+    height: 100%;
+}
