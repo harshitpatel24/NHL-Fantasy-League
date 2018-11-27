@@ -8,7 +8,7 @@ import com.nhlFantasy.entity.League;
 import com.nhlFantasy.entity.LeagueMember;
 import com.nhlFantasy.service.LeagueMemberService;
 
-@Service
+@Service("LeagueMemberService")
 public class LeagueMemberServiceImpl implements LeagueMemberService{
 
 	@Autowired

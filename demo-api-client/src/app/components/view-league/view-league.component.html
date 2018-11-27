@@ -1,0 +1,46 @@
+<!-- <div class="container">
+    <a href="http://localhost:4200/users/1">  fix here
+      <div class="navbar-header">
+      <h1>NHL-Fantasy League</h1>
+      </div>
+    </a>
+</div> -->
+<div class =  "leagues">
+<mat-card class="example-card">
+<div class=created_leagues>
+    <div id = "title">Created League</div>
+    <form class="example-form">
+        <table class="example-full-width">
+          <tr>
+            <th>League Capacity</th>
+            <th>League Name</th>
+            <th>League Created By</th>
+          </tr>
+          <tr *ngFor="let l of createdleague"> 
+              <!-- <td><span><img src={{student.photo}} width="100px" height="100px" /></span></td>                  -->
+              <td><span>{{l.leagueCapacity}}</span></td>
+              <td><span><a [routerLink]="path + l.leagueId">{{l.leagueName}}</a></span></td>
+              <td><span>{{l.user.uname}}</span></td> 
+        </tr>             
+        </table>
+      </form>
+    </div>
+
+        <div class=joined_leagues>
+            <div id = "title">Joined League</div>
+            <form class="example-form">
+                <table class="example-full-width">
+                  <tr>
+                      <th>League Capacity</th>
+                      <th>League Name</th>
+                      <th>League Created By</th>
+                    </tr>
+                    <tr *ngFor="let l of joinedleague">   
+             <!-- <td><span><img src={{student.photo}} width="100px" height="100px" /></span></td>                  -->
+             <td><span>{{l.leagueCapacity}}</span></td>
+             <td><span><a [routerLink]="path + l.leagueId">{{l.leagueName}}</a></span></td>
+             <td><span>{{l.user.uname}}</span></td> 
+                  </tr>    
+                </table></form></div>
+              </mat-card>
+            </div>

@@ -80,7 +80,8 @@ public class LeageMemberController {
 			League tempLeague = new League();
 			tempLeague.setLeagueId(leagueId);
 			leagueMember.setLeague(tempLeague);
-			
+			leagueMember.setPoints(0);
+			leagueMember.setBudget(80);
 			leagueMemberObject = leagueMemberService.addLeagueMember(leagueMember);	
 			node = mapper.convertValue(leagueMemberObject, JsonNode.class);
 			return node; 

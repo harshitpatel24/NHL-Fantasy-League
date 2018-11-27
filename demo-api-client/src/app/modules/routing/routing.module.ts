@@ -5,6 +5,10 @@ import { LoginComponent } from '../../components/login/login.component';
 import { WelcomeComponent } from '../../components/welcome/welcome.component';
 import { RegisterComponent } from '../../components/register/register.component';
 import { CreateLeagueComponent } from '../../components/create-league/create-league.component'; 
+import { UserEditComponent } from '../../components/user-edit/user-edit.component';
+// import { JoinLeagueComponent } from '../../components/join-league/join-league.component'; //mohit
+import { ViewLeagueComponent } from '../../components/view-league/view-league.component'; //mohit
+import { LeagueDashboardComponent } from '../../components/league-dashboard/league-dashboard.component'; //mohit
 import { AppComponent } from 'src/app/app.component';
 
 const routes: Routes = [
@@ -13,7 +17,9 @@ const routes: Routes = [
   { path: 'users/:id', component: UserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'create-league/:id', component: CreateLeagueComponent }
+  { path: 'users/:id/create-league', component: CreateLeagueComponent },
+  { path: 'users/:id/league/:leagueid', component: LeagueDashboardComponent },
+  { path: 'users/:id/editProfile', component: UserEditComponent }
 ];
 
 @NgModule({
