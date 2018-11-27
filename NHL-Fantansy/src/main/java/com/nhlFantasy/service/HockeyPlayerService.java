@@ -10,4 +10,6 @@ public interface HockeyPlayerService {
 	List<String> getTeams();
 
 	List<HockeyPlayer> getAllPlayers();
+
+	List<HockeyPlayer> getSelectedPlayersByMember(int userid, int leagueId);
 }

@@ -32,5 +32,10 @@ public class HockeyPlayerServiceImpl implements HockeyPlayerService{
 		// TODO Auto-generated method stub
 		return hockeyPlayerRepository.getAllPlayers();
 	}
+	@Override
+	public List<HockeyPlayer> getSelectedPlayersByMember(int userid, int leagueId) {
+		// TODO Auto-generated method stub
+		return hockeyPlayerRepository.getSelectedPlayersByMember(userid,leagueId); 
+	}
 
 }
