@@ -6,13 +6,10 @@
           </div>
         </a>
     </div>
-        <!-- <mat-card-title *ngIf="user">{{user.uname}}</mat-card-title> -->
     <div class="examplecard">
-      <!-- <div style="width:100%"> -->
-        <h2><span>Welcome</span><span>To</span><span>{{leagueName}}'s</span><span>league</span></h2>
+        <h2><span>Welcome to {{leagueName}}</span></h2>
     <div class=matches>
         <div id = "title">Today's Schedule:</div>
-        <!-- <mat-card-title *ngIf=":leagueid">{{leagueid}</mat-card-title> -->
         <ul *ngFor="let match of matchschedule">
           <li><div>{{match.team1}}<span>vs</span><span>{{match.team2}}</span></div></li>
          </ul>
@@ -23,10 +20,7 @@
           <li><div>{{leaders.user.uname}}<span>{{leaders.points}}</span></div></li>
          </ul>
     </div>
-  <!-- </div> -->
     </div>
-    <app-select-players [member]="leagueMember"></app-select-players>
-    <!-- <mat-card-actions class="addPlayer">
-        <button mat-raised-button (click)="addPlayer()" color="primary">Add Player</button>
-      </mat-card-actions> -->
+    <app-player-list></app-player-list>
+    <button class="addbtn" mat-raised-button color="primary" (click)="selectPlayers()" >Select Players</button>
 </body>

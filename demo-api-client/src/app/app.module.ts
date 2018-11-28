@@ -22,6 +22,7 @@ import { ViewLeagueComponent } from './components/view-league/view-league.compon
 import { LeagueDashboardComponent } from './components/league-dashboard/league-dashboard.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { SelectPlayersComponent } from './components/select-players/select-players.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SelectPlayersComponent } from './components/select-players/select-playe
     ViewLeagueComponent,
     LeagueDashboardComponent,
     UserEditComponent,
-    SelectPlayersComponent
+    SelectPlayersComponent,
+    PlayerListComponent
   ],
   imports: [
     BrowserModule,
