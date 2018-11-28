@@ -72,11 +72,9 @@ public class LeageMemberController {
 		if (numberofLeagueMembers + 1 <= league.getLeagueCapacity())
 		{
 			LeagueMember leagueMember = new LeagueMember();
-			
 			User user = new User();
 			user.setUserid(userid);
 			leagueMember.setUser(user);
-			
 			League tempLeague = new League();
 			tempLeague.setLeagueId(leagueId);
 			leagueMember.setLeague(tempLeague);
