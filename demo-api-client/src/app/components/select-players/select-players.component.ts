@@ -5,6 +5,7 @@ import { PlayerService } from '../../services/player/player.service';
 import { LeagueMember } from '../../models/league-member.model';
 import { League } from '../../models/league.model';
 import { User } from '../../models/user.model';
+import { MemberTeam } from '../../models/member-team.model';
 
 
 @Component({
@@ -103,7 +104,6 @@ export class SelectPlayersComponent implements OnInit {
         this.selection.clear();
     }
   
-  
   /* Function to move row from table 2-->1 */
   
     moveToTableOne() {
@@ -114,6 +114,20 @@ export class SelectPlayersComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Element>(this.dataSource.data);
         this.checkedDataSource = new MatTableDataSource<Element>(this.checkedDataSource.data);
         this.checkedSelection.clear();
+    }
+
+    submitPlayers() {
+      let memberTeam = new MemberTeam();
+      memberTeam.userid = this.member.userId;
+      memberTeam.leagueId = this.member.leagueId;
+      let playerIds = new Array<Number>();
+      this.checkedDataSource.data.forEach((k: any,item) => {
+        playerIds.push(k.playerId);
+      });
+      memberTeam.playersIds = playerIds;
+      this.playerService.addPlayers(memberTeam).subscribe(data => {
+        console.log(data);
+      });
     }
   
     /** Selects all rows if they are not all selected; otherwise clear selection. */
