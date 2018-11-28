@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { PlayerService } from '../../services/player/player.service';
 import { LeagueMember } from '../../models/league-member.model';
 import { League } from '../../models/league.model';
@@ -20,17 +21,23 @@ export class SelectPlayersComponent implements OnInit {
   position: any;
   playerValue: any;
   teamAbbr: any;
-  checkedData = [];  
-  @Input() member: any;
+  leagueid: any;
+  userid: any
+  checkedData = []; 
        
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService, private router: Router,private route: ActivatedRoute) { }
      
    ngOnInit(){
+      this.route.params.subscribe(params => {
+        this.leagueid = +params['leagueid'];
+        this.userid = +params['id'];
+      });
+
       let leagueMember = new LeagueMember();
       let user = new User();
-      user.userid = this.member.userId;
+      user.userid = this.userid;
       let league = new League();
-      league.leagueId = this.member.leagueId;
+      league.leagueId = this.leagueid;
       leagueMember.user = user;
       leagueMember.league = league; 
 
@@ -118,15 +125,25 @@ export class SelectPlayersComponent implements OnInit {
 
     submitPlayers() {
       let memberTeam = new MemberTeam();
-      memberTeam.userid = this.member.userId;
-      memberTeam.leagueId = this.member.leagueId;
+      memberTeam.userid = this.userid;
+      memberTeam.leagueId = this.leagueid;
+
       let playerIds = new Array<Number>();
       this.checkedDataSource.data.forEach((k: any,item) => {
         playerIds.push(k.playerId);
       });
+
       memberTeam.playersIds = playerIds;
+      
       this.playerService.addPlayers(memberTeam).subscribe(data => {
-        console.log(data);
+        if (data.user.userid != -1 && data.league.leagueId != -1)
+        {
+          alert("Success!");
+        }
+        else
+        {
+          alert("Failed!");
+        }
       });
     }
   
@@ -141,14 +158,18 @@ export class SelectPlayersComponent implements OnInit {
   
     masterCheckedToggle() {
       this.isAllCheckedSelected()?
-        this.checkedSelection.clear() : this.dataSource.data.forEach(row => this.checkedSelection.select(row));
+        this.checkedSelection.clear() : this.checkedDataSource.data.forEach(row => this.checkedSelection.select(row));
     }
   
     
   } 
     
   export interface Element {
-    sdeptname:any;  
+    name: any;
+    rank: any;
+    position: any;
+    playerValue: any;
+    teamAbbr: any;
   }
   
   const ELEMENT_DATA: Element[] = [];
