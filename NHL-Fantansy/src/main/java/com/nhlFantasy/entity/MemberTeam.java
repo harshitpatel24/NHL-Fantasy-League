@@ -22,6 +22,14 @@ public class MemberTeam {
 	@JoinColumn(name = "memberId")
 	LeagueMember leagueMember; 
 	
+	public HockeyPlayer getHockeyPlayer() {
+		return hockeyPlayer;
+	}
+
+	public void setHockeyPlayer(HockeyPlayer hockeyPlayer) {
+		this.hockeyPlayer = hockeyPlayer;
+	}
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "playerId")
 	HockeyPlayer hockeyPlayer;
