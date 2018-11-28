@@ -12,4 +12,6 @@ public interface HockeyPlayerService {
 	List<HockeyPlayer> getAllPlayers();
 
 	List<HockeyPlayer> getSelectedPlayersByMember(int userid, int leagueId);
+
+	HockeyPlayer checkExistenceOfPlayer(int indexOf);
 }
