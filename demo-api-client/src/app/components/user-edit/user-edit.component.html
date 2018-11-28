@@ -1,3 +1,4 @@
+<app-header></app-header>
 <mat-card-header>
     <mat-card-title *ngIf="user">{{user.uname}}</mat-card-title>
   </mat-card-header>
@@ -26,5 +27,4 @@
     </form>
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
     <button id = "submitProfile" mat-raised-button (click)="submitProfile()" color="primary">Submit</button>
-    
   </mat-card-content>

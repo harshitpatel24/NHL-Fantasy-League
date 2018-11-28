@@ -1,18 +1,8 @@
-<body>
-    <div class="container">
-        <a href="http://localhost:4200/users/1">  <!-- fix here -->
-          <div class="navbar-header">
-          <h1>NHL-Fantasy League</h1>
-          </div>
-        </a>
-    </div>
-        <!-- <mat-card-title *ngIf="user">{{user.uname}}</mat-card-title> -->
+<app-header></app-header>
     <div class="examplecard">
-      <!-- <div style="width:100%"> -->
         <h2><span>Welcome</span><span>To</span><span>{{leagueName}}'s</span><span>league</span></h2>
     <div class=matches>
         <div id = "title">Today's Schedule:</div>
-        <!-- <mat-card-title *ngIf=":leagueid">{{leagueid}</mat-card-title> -->
         <ul *ngFor="let match of matchschedule">
           <li><div>{{match.team1}}<span>vs</span><span>{{match.team2}}</span></div></li>
          </ul>
@@ -23,10 +13,5 @@
           <li><div>{{leaders.user.uname}}<span>{{leaders.points}}</span></div></li>
          </ul>
     </div>
-  <!-- </div> -->
     </div>
     <app-select-players [member]="leagueMember"></app-select-players>
-    <!-- <mat-card-actions class="addPlayer">
-        <button mat-raised-button (click)="addPlayer()" color="primary">Add Player</button>
-      </mat-card-actions> -->
-</body>

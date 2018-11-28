@@ -3,6 +3,8 @@ import { League } from '../../models/league.model';
 import { User } from '../../models/user.model';
 import { LeagueService } from '../../services/league/league.service'; 
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-create-league',
@@ -14,7 +16,7 @@ export class CreateLeagueComponent implements OnInit {
   league: League;
   user: User;
 
-  constructor(private leagueService: LeagueService, private route: ActivatedRoute) { }
+  constructor(private leagueService: LeagueService, private route: ActivatedRoute,private localSt:LocalStorageService,private appComponent: AppComponent) { }
 
   ngOnInit() 
   {
@@ -24,7 +26,7 @@ export class CreateLeagueComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.user.userid = +params['id'];
    });
-
+   this.appComponent.validateUser(this.user.userid);
   }
 
   submitLeague()

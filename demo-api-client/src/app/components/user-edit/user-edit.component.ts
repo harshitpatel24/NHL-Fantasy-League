@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
 import { User } from '../../models/user.model';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-user-edit',
@@ -12,7 +14,7 @@ export class UserEditComponent implements OnInit {
 
   user: User;
   id: number;
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router,private localSt:LocalStorageService,private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -29,6 +31,7 @@ export class UserEditComponent implements OnInit {
           this.user = data;
         });
     }
+    this.appComponent.validateUser(this.id);
   }
 
   submitProfile() {
