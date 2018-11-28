@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { map } from "rxjs/operators";
 import { User } from '../../models/user.model';
 import 'rxjs/add/operator/do';
-import { LeagueMember } from 'src/app/models/league-member.model';
+import { LeagueMember } from '../../models/league-member.model';
+import { MemberTeam } from '../../models/member-team.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class PlayerService {
   constructor(private http: Http) { }
 
   getPlayersByTeam(team: String){
-    
+
     let tempObj = {
       "teamName": team
     }
@@ -36,6 +37,17 @@ export class PlayerService {
      }
 
      return this.http.post('/api/getSelectedPlayersByMember', tempObj).pipe(map((response: Response) => response.json())); 
+  }
+
+  addPlayers(memberTeam: MemberTeam){
+
+    let tempObj = {
+      "userid": memberTeam.userid,
+      "leagueId": memberTeam.leagueId,
+      "playerIds": memberTeam.playersIds
+    }
+
+    return this.http.post('/api/addSelectedPlayersByMember', tempObj).pipe(map((response: Response) => response.json())); 
   }
  
   

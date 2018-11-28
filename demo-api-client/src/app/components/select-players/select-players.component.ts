@@ -5,6 +5,7 @@ import { PlayerService } from '../../services/player/player.service';
 import { LeagueMember } from '../../models/league-member.model';
 import { League } from '../../models/league.model';
 import { User } from '../../models/user.model';
+import { MemberTeam } from '../../models/member-team.model';
 
 
 @Component({
@@ -25,15 +26,6 @@ export class SelectPlayersComponent implements OnInit {
   constructor(private playerService: PlayerService) { }
      
    ngOnInit(){
-      this.playerService.getAllPlayers().subscribe(data => {
-        this.name = data;
-        this.position = data;
-        this.rank = data;
-        this.playerValue = data;
-        this.teamAbbr = data;
-        this.dataSource.data = (data as Element[]);
-        this.checkedDataSource.data = this.data;
-      });
       let leagueMember = new LeagueMember();
       let user = new User();
       user.userid = this.member.userId;
@@ -41,7 +33,27 @@ export class SelectPlayersComponent implements OnInit {
       league.leagueId = this.member.leagueId;
       leagueMember.user = user;
       leagueMember.league = league; 
-      //this.playerService.getPlayersByMember()
+
+      this.playerService.getPlayersByMember(leagueMember).subscribe(data => {
+        this.name = data;
+        this.position = data;
+        this.rank = data;
+        this.playerValue = data;
+        this.teamAbbr = data;
+        this.checkedDataSource.data = (data as Element[]);
+      });
+
+      this.playerService.getAllPlayers().subscribe(data => {
+        this.checkedDataSource.data.forEach((k: any, item) => {
+          data = data.filter(player2 => player2.playerId !=  k.playerId);
+        });
+        this.name = data;
+        this.position = data;
+        this.rank = data;
+        this.playerValue = data;
+        this.teamAbbr = data;
+        this.dataSource.data = (data as Element[]);
+      });
 
     }
    
@@ -92,7 +104,6 @@ export class SelectPlayersComponent implements OnInit {
         this.selection.clear();
     }
   
-  
   /* Function to move row from table 2-->1 */
   
     moveToTableOne() {
@@ -103,6 +114,20 @@ export class SelectPlayersComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Element>(this.dataSource.data);
         this.checkedDataSource = new MatTableDataSource<Element>(this.checkedDataSource.data);
         this.checkedSelection.clear();
+    }
+
+    submitPlayers() {
+      let memberTeam = new MemberTeam();
+      memberTeam.userid = this.member.userId;
+      memberTeam.leagueId = this.member.leagueId;
+      let playerIds = new Array<Number>();
+      this.checkedDataSource.data.forEach((k: any,item) => {
+        playerIds.push(k.playerId);
+      });
+      memberTeam.playersIds = playerIds;
+      this.playerService.addPlayers(memberTeam).subscribe(data => {
+        console.log(data);
+      });
     }
   
     /** Selects all rows if they are not all selected; otherwise clear selection. */
