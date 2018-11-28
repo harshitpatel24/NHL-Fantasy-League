@@ -25,15 +25,6 @@ export class SelectPlayersComponent implements OnInit {
   constructor(private playerService: PlayerService) { }
      
    ngOnInit(){
-      this.playerService.getAllPlayers().subscribe(data => {
-        this.name = data;
-        this.position = data;
-        this.rank = data;
-        this.playerValue = data;
-        this.teamAbbr = data;
-        this.dataSource.data = (data as Element[]);
-        this.checkedDataSource.data = this.data;
-      });
       let leagueMember = new LeagueMember();
       let user = new User();
       user.userid = this.member.userId;
@@ -41,7 +32,27 @@ export class SelectPlayersComponent implements OnInit {
       league.leagueId = this.member.leagueId;
       leagueMember.user = user;
       leagueMember.league = league; 
-      //this.playerService.getPlayersByMember()
+
+      this.playerService.getPlayersByMember(leagueMember).subscribe(data => {
+        this.name = data;
+        this.position = data;
+        this.rank = data;
+        this.playerValue = data;
+        this.teamAbbr = data;
+        this.checkedDataSource.data = (data as Element[]);
+      });
+
+      this.playerService.getAllPlayers().subscribe(data => {
+        this.checkedDataSource.data.forEach((k: any, item) => {
+          data = data.filter(player2 => player2.playerId !=  k.playerId);
+        });
+        this.name = data;
+        this.position = data;
+        this.rank = data;
+        this.playerValue = data;
+        this.teamAbbr = data;
+        this.dataSource.data = (data as Element[]);
+      });
 
     }
    
