@@ -23,6 +23,7 @@ import { LeagueDashboardComponent } from './components/league-dashboard/league-d
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { SelectPlayersComponent } from './components/select-players/select-players.component';
 import { PlayerListComponent } from './components/player-list/player-list.component';
+import { ScoreLogComponent } from './components/score-log/score-log.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
     LeagueDashboardComponent,
     UserEditComponent,
     SelectPlayersComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    ScoreLogComponent
   ],
   imports: [
     BrowserModule,

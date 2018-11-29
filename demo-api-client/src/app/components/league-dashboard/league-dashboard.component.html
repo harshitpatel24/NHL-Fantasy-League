@@ -18,7 +18,8 @@
         <div id = "title">League Leaders</div>
         <ul *ngFor="let leaders of leagueLeaders">
           <li><div>{{leaders.user.uname}}<span>{{leaders.points}}</span></div></li>
-         </ul>
+        </ul>
+        <button class="addbtn" mat-raised-button color="primary" (click)="checkSummary()" >Check Point Summary</button>
     </div>
     </div>
     <app-player-list></app-player-list>

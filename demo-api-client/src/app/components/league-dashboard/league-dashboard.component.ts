@@ -53,5 +53,9 @@ export class LeagueDashboardComponent implements OnInit {
   selectPlayers(){
     this.router.navigate([this.router.url + '/selectPlayers']);
   }
+
+  checkSummary(){
+    this.router.navigate([this.router.url + '/checkPointsLog']);
+  }
 }
   
