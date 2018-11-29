@@ -28,7 +28,7 @@ public class GetLeagueLeadersController {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		String leagueIdStr = objNode.get("leagueId").toString();
-		leagueIdStr = leagueIdStr.substring(1, leagueIdStr.length()- 1);
+		//leagueIdStr = leagueIdStr.substring(1, leagueIdStr.length()- 1); mohit
 		int leagueId = Integer.parseInt(leagueIdStr);
 		
 		List<LeagueMember> leagueMembers = getLeagueLeadersService.getLeagueLeaders(leagueId);

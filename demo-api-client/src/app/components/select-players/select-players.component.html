@@ -1,0 +1,131 @@
+<mat-card>
+    <table>
+        <tr>
+          <td>
+            <div class="example-container mat-elevation-z8">
+            
+        
+              <mat-table #table [dataSource]="dataSource" >
+                      
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                      <mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                                      [checked]="selection.hasValue() && isAllSelected()"
+                                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+                        </mat-checkbox>
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                                      (change)="$event ? selection.toggle(row) : null"
+                                      [checked]="selection.isSelected(row)">
+                        </mat-checkbox>
+                      </mat-cell>
+                    </ng-container>
+                    
+                           
+                  <ng-container class="deptname" matColumnDef="name"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Player Name </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.name}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="position"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Position </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.position}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="rank"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Rank </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.rank}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="playerValue"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Value </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.playerValue}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="team"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Team </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.teamAbbr}}</mat-cell>
+                  </ng-container>
+                        
+                  
+        
+               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; " >
+                    </mat-row>
+                    
+                </mat-table> 
+                <div >
+                <mat-paginator #paginator
+                      [pageSize]="15"
+                      [pageSizeOptions]="[5, 10, 15,25, 100]">
+              </mat-paginator>
+              </div>
+              </div>
+          </td>
+          <td>
+            
+            <div class="example-container2 mat-elevation-z8">
+            
+                    <mat-table #table [dataSource]="checkedDataSource" > 
+        
+        
+                  <!-- Checkbox Column -->
+                  <ng-container matColumnDef="select">
+                    <mat-header-cell *matHeaderCellDef>
+                      <mat-checkbox (change)="$event ? masterCheckedToggle() : null" 
+                             [checked]="checkedSelection.hasValue() && isAllCheckedSelected()" 
+                              [indeterminate]="checkedSelection.hasValue() && !isAllCheckedSelected()">
+                      </mat-checkbox>
+                      
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <mat-checkbox (click)="$event.stopPropagation()" 
+                              (change)="$event ? checkedSelection.toggle(row) : null" 
+                              [checked]="checkedSelection.isSelected(row)">
+                      </mat-checkbox>
+                    </mat-cell>
+                  </ng-container>
+                  
+                    
+                  <ng-container class="deptname" matColumnDef="name"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Player Name </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.name}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="position"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Position </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.position}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="rank"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Rank </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.rank}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="playerValue"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Value </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.playerValue}}</mat-cell>
+                  </ng-container>
+                  <ng-container class="deptname" matColumnDef="team"  >
+                    <mat-header-cell class="deptname" *matHeaderCellDef > Team </mat-header-cell>
+                    <mat-cell class="deptname" *matCellDef="let element"> {{element.teamAbbr}}</mat-cell>
+                  </ng-container>
+                    
+                      
+               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="checkedSelection.toggle(row)">
+                  </mat-row>
+                    
+                </mat-table> 
+                <div >
+                <mat-paginator #checkedpaginator
+                      [pageSize]="15"
+                      [pageSizeOptions]="[5, 10, 15,25, 100]">
+                   </mat-paginator>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><button class="addbtn" mat-raised-button color="primary" (click)="moveToTableTwo()" >Move To Table 2</button></td>
+          <td><button class="addbtn" mat-raised-button color="primary" (click)="moveToTableOne()" >Move To Table 1</button></td>
+        </tr>	
+        <button class="addbtn" mat-raised-button color="primary" (click)="submitPlayers()" >Add Players</button>
+        </table>
+        </mat-card>
+        

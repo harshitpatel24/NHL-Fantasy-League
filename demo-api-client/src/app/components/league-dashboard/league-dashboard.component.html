@@ -1,0 +1,26 @@
+<body>
+    <div class="container">
+        <a href="http://localhost:4200/users/1">  <!-- fix here -->
+          <div class="navbar-header">
+          <h1>NHL-Fantasy League</h1>
+          </div>
+        </a>
+    </div>
+    <div class="examplecard">
+        <h2><span>Welcome to {{leagueName}}</span></h2>
+    <div class=matches>
+        <div id = "title">Today's Schedule:</div>
+        <ul *ngFor="let match of matchschedule">
+          <li><div>{{match.team1}}<span>vs</span><span>{{match.team2}}</span></div></li>
+         </ul>
+    </div>
+    <div class=leaders>
+        <div id = "title">League Leaders</div>
+        <ul *ngFor="let leaders of leagueLeaders">
+          <li><div>{{leaders.user.uname}}<span>{{leaders.points}}</span></div></li>
+         </ul>
+    </div>
+    </div>
+    <app-player-list></app-player-list>
+    <button class="addbtn" mat-raised-button color="primary" (click)="selectPlayers()" >Select Players</button>
+</body>

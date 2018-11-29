@@ -15,6 +15,6 @@ h1{
     background-color: rgb(122, 122, 255);
     height: 100px;
 }
-.example-card{
-    background-color: rgb(255, 255, 144);
+a{
+    text-decoration: none;
 }

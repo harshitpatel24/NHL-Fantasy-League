@@ -27,7 +27,7 @@ public class ShowJoinedLeagueController {
 	public @ResponseBody JsonNode showJoinedLeague(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
 		ObjectMapper mapper = new ObjectMapper();
 		String userIdStr = objNode.get("userId").toString();
-		int userId = Integer.parseInt(userIdStr.substring(1,userIdStr.length()-1));
+		int userId = Integer.parseInt(userIdStr);
 		ArrayList<League> joinedLeagues = showJoinedLeagueService.getCreatedLeaguesService(userId);
 		JsonNode node = mapper.convertValue(joinedLeagues, JsonNode.class);
 		return node;
