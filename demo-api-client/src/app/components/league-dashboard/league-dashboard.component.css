@@ -5,17 +5,6 @@ body{
     box-sizing: border-box;
 }
 
-h1{
-    padding : 0px;
-    margin : 0px;
-    color: black;
-    text-align: center;
-    padding : 25px;
-}
-.container {
-    background-color: rgb(122, 122, 255);
-    height: 100px;
-}
 .examplecard{
     background: rgb(255, 255, 144);
     width: 100%;  

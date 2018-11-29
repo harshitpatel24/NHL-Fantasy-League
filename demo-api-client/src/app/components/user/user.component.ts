@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user/user.service';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-user',
@@ -14,7 +16,7 @@ export class UserComponent implements OnInit {
   joinLeagueForm: boolean = false;
   joinLeagueButton: boolean = true; 
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router,private appComponent: AppComponent,private localSt:LocalStorageService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -31,6 +33,7 @@ export class UserComponent implements OnInit {
           this.user = data;
         });
     }
+    this.appComponent.validateUser(this.id);
   }
 
   editProfile() {

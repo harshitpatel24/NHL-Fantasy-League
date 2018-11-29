@@ -1,26 +1,14 @@
-<div class="container">
-  <div class="navbar-header">
-    <h1>NHL-Fantasy League</h1>
-  </div>
-</div>
+<app-header></app-header>
 <div layout-fill layout="column" layout-align="center none">
   <div layout="row" layout-align="center none">
-    <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title *ngIf="user">{{user.uname}}</mat-card-title>
       </mat-card-header>
       <app-view-league></app-view-league>
       <div class= row>
-        <!-- <mat-card-actions>  -->
           <button id = "editProfile" mat-raised-button (click)="editProfile()" color="primary">Edit Profile</button>
-        <!-- </mat-card-actions> -->
-        <!-- <mat-card-actions> -->
           <button id = "createLeague" mat-raised-button (click)="createLeague()" color="primary">Create League</button>
-        <!-- </mat-card-actions> -->
-        <!-- <mat-card-actions> -->
           <button id = "joinLeague"  mat-raised-button (click)="joinLeague()" color="primary">Join League</button>
           <app-join-league *ngIf="joinLeagueForm" [user]="user"></app-join-league> 
       </div>
-    </mat-card>
   </div>
 </div>

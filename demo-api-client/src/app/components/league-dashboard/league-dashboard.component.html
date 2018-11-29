@@ -1,13 +1,6 @@
-<body>
-    <div class="container">
-        <a href="http://localhost:4200/users/1">  <!-- fix here -->
-          <div class="navbar-header">
-          <h1>NHL-Fantasy League</h1>
-          </div>
-        </a>
-    </div>
+<app-header></app-header>
     <div class="examplecard">
-        <h2><span>Welcome to {{leagueName}}</span></h2>
+        <h2><span>Welcome</span><span>To</span><span>{{leagueName}}'s</span><span>league</span></h2>
     <div class=matches>
         <div id = "title">Today's Schedule:</div>
         <ul *ngFor="let match of matchschedule">
