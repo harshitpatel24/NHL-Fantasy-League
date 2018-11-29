@@ -5,6 +5,8 @@ import { MatchSchedule } from '../../models/matchschedule.model';
 import { LeagueMember } from '../../models/league-member.model';
 import { LeagueService } from '../../services/league/league.service'; 
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-league-dashboard',
@@ -22,7 +24,7 @@ export class LeagueDashboardComponent implements OnInit {
   league : League;
   leagueName : string;
 
-  constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute) { }
+  constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute,private localSt:LocalStorageService,private appComponent: AppComponent) { }
 
   ngOnInit() {
       this.route.params.subscribe(params => {
@@ -42,6 +44,7 @@ export class LeagueDashboardComponent implements OnInit {
         });
         this.getLeagueByLeagueId();
       }
+      this.appComponent.validateUser(this.id);
   }
 
   getLeagueByLeagueId(){
@@ -52,6 +55,10 @@ export class LeagueDashboardComponent implements OnInit {
 
   selectPlayers(){
     this.router.navigate([this.router.url + '/selectPlayers']);
+  }
+
+  checkSummary(){
+    this.router.navigate([this.router.url + '/checkPointsLog']);
   }
 }
   

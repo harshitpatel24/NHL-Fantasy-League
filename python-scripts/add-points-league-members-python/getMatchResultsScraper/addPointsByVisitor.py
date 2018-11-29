@@ -19,7 +19,7 @@ def main():
 	goalPointVisitorObj = visitorImpl.goalPointVisitor()
 	assistPointVisitorObj = visitorImpl.assistPointVisitor()
 	leagueMemberObj = visitorImpl.LeagueMember()
-	memberTeamObj = visitorImpl.MemberTeam()
+	hockeyPlayerStatsObj = visitorImpl.HockeyPlayerStats()
 	
 	#reading file with match results
 	fileName=datetime.now().strftime("%Y-%m-%d") + '.json'
@@ -33,20 +33,27 @@ def main():
 			goalScorersList.append(goalScorrer)
 		for assistPlayer in jsonImplObj.fetchAssistPlayers(jsonObject):
 			assistPlayersList.append(assistPlayer)
-	
+
+
+
+
 	#getting playerIDs from DBs
 	connectionObj = dbImplObj.getConnection(dbPassword)
 	goalScorrersIdList = dbImplObj.getPlayerIdsFromDb(connectionObj,goalScorersList)
 	assistPlayersIdsList = dbImplObj.getPlayerIdsFromDb(connectionObj,assistPlayersList)
-	connectionObj.close()	
-	
+	connectionObj.close()
+
+	connectionObj = dbImplObj.getConnection(dbPassword)
+	dbImplObj.saveMemberTeamToArchive(connectionObj)
+	connectionObj.close()
+
 	#calling accept of leagueMemberObj and memberTeamObj to visit each leagueMember and memberTeam to add Goal points
-	memberTeamObj.accept(goalPointVisitorObj, goalScorrersIdList, dbPassword)
+	hockeyPlayerStatsObj.accept(goalPointVisitorObj, goalScorrersIdList, dbPassword)
 	leagueMemberObj.accept(goalPointVisitorObj,goalScorrersIdList,dbPassword)
 
 	
 	#calling accept of leagueMemberObj and memberTeamObj to visit each leagueMember and memberTeam to add Assist points
-	memberTeamObj.accept(assistPointVisitorObj, assistPlayersIdsList, dbPassword)
+	hockeyPlayerStatsObj.accept(assistPointVisitorObj, assistPlayersIdsList, dbPassword)
 	leagueMemberObj.accept(assistPointVisitorObj,assistPlayersIdsList,dbPassword)
 
 	

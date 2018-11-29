@@ -86,8 +86,6 @@ public class MemberTeamController {
 				MemberTeam memberTeam = new MemberTeam();
 				HockeyPlayer hockeyPlayer = new HockeyPlayer();
 				hockeyPlayer.setPlayerId(playerIds.get(i));
-					
-				memberTeam.setPointsEarned(0);
 				memberTeam.setHockeyPlayer(hockeyPlayer);
 				memberTeam.setLeagueMember(leagueMember);
 				MemberTeam memberTeamObj = memberTeamService.addMemberTeam(memberTeam);

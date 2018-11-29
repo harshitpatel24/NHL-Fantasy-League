@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { CustomMaterialModule } from './core/material.module';
 import { MatCheckboxModule, MatPaginatorModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 
 import { UserService } from './services/user/user.service';
 
@@ -23,6 +24,8 @@ import { LeagueDashboardComponent } from './components/league-dashboard/league-d
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { SelectPlayersComponent } from './components/select-players/select-players.component';
 import { PlayerListComponent } from './components/player-list/player-list.component';
+import { ScoreLogComponent } from './components/score-log/score-log.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
     LeagueDashboardComponent,
     UserEditComponent,
     SelectPlayersComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    ScoreLogComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxWebstorageModule.forRoot()
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
