@@ -23,6 +23,8 @@ import { ViewLeagueComponent } from './components/view-league/view-league.compon
 import { LeagueDashboardComponent } from './components/league-dashboard/league-dashboard.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { SelectPlayersComponent } from './components/select-players/select-players.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
+import { ScoreLogComponent } from './components/score-log/score-log.component';
 import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
@@ -39,6 +41,8 @@ import { HeaderComponent } from './components/header/header.component';
     LeagueDashboardComponent,
     UserEditComponent,
     SelectPlayersComponent,
+    PlayerListComponent,
+    ScoreLogComponent,
     HeaderComponent
   ],
   imports: [

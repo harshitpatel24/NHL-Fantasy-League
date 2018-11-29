@@ -1,5 +1,7 @@
 package com.nhlFantasy.entity;
 
+import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "memberTeam")
-public class MemberTeam {
-
+@Table(name = "memberTeamArchive")
+public class MemberTeamArchive {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int teamId;
+	int memberTeamArchiveId;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "memberId")
@@ -24,13 +26,13 @@ public class MemberTeam {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "playerId")
 	HockeyPlayer hockeyPlayer;
-
-	public int getTeamId() {
-		return teamId;
+	
+	public int getMemberTeamArchiveId() {
+		return memberTeamArchiveId;
 	}
 
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
+	public void setMemberTeamArchiveId(int memberTeamArchiveId) {
+		this.memberTeamArchiveId = memberTeamArchiveId;
 	}
 
 	public LeagueMember getLeagueMember() {
@@ -48,4 +50,16 @@ public class MemberTeam {
 	public void setHockeyPlayer(HockeyPlayer hockeyPlayer) {
 		this.hockeyPlayer = hockeyPlayer;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	@Column(name = "date")
+	Date date;
+
 }

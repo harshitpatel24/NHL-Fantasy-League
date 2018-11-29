@@ -23,7 +23,6 @@ export class LeagueDashboardComponent implements OnInit {
   leagueid : number;
   league : League;
   leagueName : string;
-  leagueMember: {};
 
   constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute,private localSt:LocalStorageService,private appComponent: AppComponent) { }
 
@@ -35,7 +34,6 @@ export class LeagueDashboardComponent implements OnInit {
 
       if (this.leagueid != null)
       {
-        this.leagueMember = { leagueId: this.leagueid, userId: this.id };
         var month = this.today.getMonth()+1;
         var currentdate = this.today.getFullYear()+"-"+ month+"-"+ this.today.getDate();
           this.leagueService.getMatchSchedule(currentdate).subscribe(data => {
@@ -53,6 +51,14 @@ export class LeagueDashboardComponent implements OnInit {
       this.leagueService.getLeagueByLeagueId(this.leagueid).subscribe(data => {
       this.league = data;
       this.leagueName = this.league.leagueName;});
+  }
+
+  selectPlayers(){
+    this.router.navigate([this.router.url + '/selectPlayers']);
+  }
+
+  checkSummary(){
+    this.router.navigate([this.router.url + '/checkPointsLog']);
   }
 }
   

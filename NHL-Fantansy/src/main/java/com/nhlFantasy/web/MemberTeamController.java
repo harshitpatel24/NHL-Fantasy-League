@@ -19,6 +19,7 @@ import com.nhlFantasy.entity.League;
 import com.nhlFantasy.entity.LeagueMember;
 import com.nhlFantasy.entity.MemberTeam;
 import com.nhlFantasy.entity.User;
+import com.nhlFantasy.service.HockeyPlayerService;
 import com.nhlFantasy.service.LeagueMemberService;
 import com.nhlFantasy.service.MemberTeamService;
 
@@ -33,6 +34,9 @@ public class MemberTeamController {
 	@Autowired
 	LeagueMemberService leagueMemberService;
 	
+	@Autowired
+	HockeyPlayerService hockeyPlayerService;	
+	
 	@RequestMapping(value = "/api/addSelectedPlayersByMember", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody JsonNode addLeagueMember(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
 	
@@ -45,46 +49,49 @@ public class MemberTeamController {
 		int userid = Integer.parseInt(userIdStr);
 		
 		LeagueMember leagueMember = leagueMemberService.findLeagueMemberbyUserid(leagueId, userid);
-		
-		
-		ArrayList<Integer> playerIds = new ArrayList<Integer>();
-		String playerIdsStr = objNode.get("playerIds").toString();
-		String player = "";
-		for(int i =0; i < playerIdsStr.length(); i++)
+		if(leagueMember == null)
 		{
-			if(playerIdsStr.charAt(i) == '[')
+			leagueMember = new LeagueMember();
+			leagueMember.setId(-1);
+		}
+		else
+		{
+			ArrayList<Integer> playerIds = new ArrayList<Integer>();
+			String playerIdsStr = objNode.get("playerIds").toString();
+			String player = "";
+			for(int i =0; i < playerIdsStr.length(); i++)
 			{
+				if(playerIdsStr.charAt(i) == '[')
+				{
+					
+				}
+				else if(playerIdsStr.charAt(i) == ']')
+				{
+					playerIds.add(Integer.parseInt(player));
+					player = "";
+				}
+				else if(playerIdsStr.charAt(i) == ',')
+				{
+					playerIds.add(Integer.parseInt(player));
+					player = "";
+				}
+				else
+				{
+					player = player + playerIdsStr.charAt(i);
+				}
+			}
+			memberTeamService.removeSelectedPlayers(leagueMember.getId());
+			for(int i = 0; i < playerIds.size(); i++ )
+			{
+				MemberTeam memberTeam = new MemberTeam();
+				HockeyPlayer hockeyPlayer = new HockeyPlayer();
+				hockeyPlayer.setPlayerId(playerIds.get(i));
+				memberTeam.setHockeyPlayer(hockeyPlayer);
+				memberTeam.setLeagueMember(leagueMember);
+				MemberTeam memberTeamObj = memberTeamService.addMemberTeam(memberTeam);
+			}
 				
-			}
-			else if(playerIdsStr.charAt(i) == ']')
-			{
-				playerIds.add(Integer.parseInt(player));
-				player = "";
-			}
-			else if(playerIdsStr.charAt(i) == ',')
-			{
-				playerIds.add(Integer.parseInt(player));
-				player = "";
-			}
-			else
-			{
-				player = player + playerIdsStr.charAt(i);
-			}
 		}
-		for(int i = 0; i < playerIds.size(); i++ )
-		{
-			MemberTeam memberTeam = new MemberTeam();
-			HockeyPlayer hockeyPlayer = new HockeyPlayer();
-			hockeyPlayer.setPlayerId(playerIds.get(i));
-			memberTeam.setPointsEarned(0);
-			memberTeam.setHockeyPlayer(hockeyPlayer);
-			memberTeam.setLeagueMember(leagueMember);
-			MemberTeam memberTeamObj = memberTeamService.addMemberTeam(memberTeam);
-		}
-		
-		 
-		
-		
 		//LeagueMember leagueMemberObject = new LeagueMember(); 
 		JsonNode node = null;
 		node = mapper.convertValue(leagueMember, JsonNode.class);

@@ -17,5 +17,10 @@ public class MemberTeamServiceImpl implements MemberTeamService {
 		// TODO Auto-generated method stub
 		return memberTeamRepository.save(memberTeam);
 	}
+	@Override
+	public void removeSelectedPlayers(int memberId) {
+		// TODO Auto-generated method stub
+		memberTeamRepository.removeSelectedPlayers(memberId);
+	}
 
 }
