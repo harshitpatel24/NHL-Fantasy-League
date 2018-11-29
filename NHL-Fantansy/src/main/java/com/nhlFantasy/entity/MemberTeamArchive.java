@@ -27,6 +27,38 @@ public class MemberTeamArchive {
 	@JoinColumn(name = "playerId")
 	HockeyPlayer hockeyPlayer;
 	
+	public int getMemberTeamArchiveId() {
+		return memberTeamArchiveId;
+	}
+
+	public void setMemberTeamArchiveId(int memberTeamArchiveId) {
+		this.memberTeamArchiveId = memberTeamArchiveId;
+	}
+
+	public LeagueMember getLeagueMember() {
+		return leagueMember;
+	}
+
+	public void setLeagueMember(LeagueMember leagueMember) {
+		this.leagueMember = leagueMember;
+	}
+
+	public HockeyPlayer getHockeyPlayer() {
+		return hockeyPlayer;
+	}
+
+	public void setHockeyPlayer(HockeyPlayer hockeyPlayer) {
+		this.hockeyPlayer = hockeyPlayer;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Column(name = "date")
 	Date date;
 

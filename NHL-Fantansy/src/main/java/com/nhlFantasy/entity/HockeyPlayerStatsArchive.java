@@ -24,6 +24,46 @@ public class HockeyPlayerStatsArchive {
 	@JoinColumn(name = "playerId")
 	HockeyPlayer hockeyPlayer;
 	
+	public int getHockeyPlayerStatsArchiveId() {
+		return hockeyPlayerStatsArchiveId;
+	}
+
+	public void setHockeyPlayerStatsArchiveId(int hockeyPlayerStatsArchiveId) {
+		this.hockeyPlayerStatsArchiveId = hockeyPlayerStatsArchiveId;
+	}
+
+	public HockeyPlayer getHockeyPlayer() {
+		return hockeyPlayer;
+	}
+
+	public void setHockeyPlayer(HockeyPlayer hockeyPlayer) {
+		this.hockeyPlayer = hockeyPlayer;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public String getPointSummary() {
+		return pointSummary;
+	}
+
+	public void setPointSummary(String pointSummary) {
+		this.pointSummary = pointSummary;
+	}
+
 	@Column(name = "date")
 	Date date;
 	
