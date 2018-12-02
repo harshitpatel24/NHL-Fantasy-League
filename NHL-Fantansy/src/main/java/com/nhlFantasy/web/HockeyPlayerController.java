@@ -93,7 +93,7 @@ public class HockeyPlayerController {
 		String leagueidStr = objNode.get("leagueId").toString();
 		int leagueId = Integer.parseInt(leagueidStr);
 
-		List<HockeyPlayer> hockeyPlayers = memberTeamService.getSelectedPlayersByMember(userid,leagueId);
+		List<HockeyPlayer> hockeyPlayers = hockeyPlayerService.getSelectedPlayersByMember(userid,leagueId);
 		
 		//System.out.println("list of hockey players = " + hockeyPlayers.size());
 		JsonNode node = null;

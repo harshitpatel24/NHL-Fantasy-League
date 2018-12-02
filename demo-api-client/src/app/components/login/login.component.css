@@ -1,0 +1,33 @@
+.container{
+    width:100%;
+    height:100%;
+	background-image: url("../backgroungImage.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	position : fixed;
+}
+
+.sub_container
+{
+	height:300px;
+	width:40%;
+	background : rgba(0, 0, 0, 0.75);
+	position : relative;
+	margin-left:30%;
+	margin-top : 15%;
+	
+	border-radius:5%
+}
+
+.form_class
+{
+	color:white;
+	margin-left:35%;
+}
+
+
+.font_color_class
+{
+	color:white !important;
+}
