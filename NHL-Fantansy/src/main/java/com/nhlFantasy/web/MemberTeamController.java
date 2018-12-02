@@ -1,6 +1,7 @@
 package com.nhlFantasy.web;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,6 +96,23 @@ public class MemberTeamController {
 		//LeagueMember leagueMemberObject = new LeagueMember(); 
 		JsonNode node = null;
 		node = mapper.convertValue(leagueMember, JsonNode.class);
+		return node;
+	}
+	
+	@RequestMapping(value = "/api/getSelectedPlayersByMembers", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+	public @ResponseBody JsonNode getSelectedPlayersByMembers(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
+	
+		ObjectMapper mapper = new ObjectMapper();
+		String memberIdStr = objNode.get("memberId").toString();
+		int memberId = Integer.parseInt(memberIdStr);
+		
+		List<MemberTeam> hockeyPlayers = memberTeamService.getSelectedPlayersByMembers(memberId);
+		
+		//System.out.println("list of hockey players = " + hockeyPlayers.size());
+		JsonNode node = null;
+		
+		node = mapper.convertValue(hockeyPlayers, JsonNode.class);
+		
 		return node;
 	}
 	
