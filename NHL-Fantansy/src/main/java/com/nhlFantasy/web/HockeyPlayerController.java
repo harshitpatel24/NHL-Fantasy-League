@@ -16,12 +16,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhlFantasy.entity.HockeyPlayer;
 import com.nhlFantasy.service.HockeyPlayerService;
+import com.nhlFantasy.service.MemberTeamService;
 
 @RestController
 public class HockeyPlayerController {
 	
 	@Autowired
 	HockeyPlayerService hockeyPlayerService;
+	
+	@Autowired
+	MemberTeamService memberTeamService;
 
 	@RequestMapping(value = "/api/getAllPlayersbyTeam", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody JsonNode getAllHockeyPlayersByTeam(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
@@ -89,7 +93,7 @@ public class HockeyPlayerController {
 		String leagueidStr = objNode.get("leagueId").toString();
 		int leagueId = Integer.parseInt(leagueidStr);
 
-		List<HockeyPlayer> hockeyPlayers = hockeyPlayerService.getSelectedPlayersByMember(userid,leagueId);
+		List<HockeyPlayer> hockeyPlayers = memberTeamService.getSelectedPlayersByMember(userid,leagueId);
 		
 		//System.out.println("list of hockey players = " + hockeyPlayers.size());
 		JsonNode node = null;
@@ -98,5 +102,6 @@ public class HockeyPlayerController {
 		
 		return node;
 	}
+	
 	
 }

@@ -25,5 +25,7 @@ public interface HockeyPlayerRepository extends JpaRepository<HockeyPlayer, Long
 	
 	@Query(nativeQuery = true, value = "select * from hockeyPlayer h where h.playerId = :playerId")
 	HockeyPlayer checkExistenceOfPlayer(@Param("playerId") int playerId);
+
+	
 		
 }
