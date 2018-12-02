@@ -20,4 +20,6 @@ public interface UserService {
 	boolean deleteUser(User user);
 	
 	User searchUserbyuserId(int id);
+	
+	User searchUserbyEmail(String email);
 }
