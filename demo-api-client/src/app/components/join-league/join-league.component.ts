@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { LeagueService } from '../../services/league/league.service';
 import { League } from '../../models/league.model';
 import { User } from '../../models/user.model';
-import { LeagueMember } from '../../models/league-member.model'; 
+import { LeagueMember } from '../../models/league-member.model';
 
 @Component({
   selector: 'app-join-league',
@@ -21,8 +21,7 @@ export class JoinLeagueComponent implements OnInit {
 
   ngOnInit() {
     this.league = new League();
-    this.leagueMember = new LeagueMember(); 
-
+    this.leagueMember = new LeagueMember();
   }
 
   joinLeague() {

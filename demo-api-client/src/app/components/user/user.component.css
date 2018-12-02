@@ -1,0 +1,20 @@
+body{
+    padding : 0px;
+    margin : 0px;
+    background-color: white;
+}
+#editProfile{
+    margin :20px;
+}
+#submitProfile{
+    margin :20px;
+}
+#createLeague{
+    margin :20px;
+}
+#joinLeague{
+    margin :20px;
+}
+#viewLeague{
+    margin :20px;
+}

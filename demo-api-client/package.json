@@ -23,9 +23,13 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "core-js": "^2.5.4",
+<<<<<<< HEAD
     "modules": "^0.4.0",
     "ngx-webstorage": "^3.0.0-beta.14",
     "node": "^11.2.0",
+=======
+    "ngx-webstorage": "^3.0.0-beta.14",
+>>>>>>> ff0821d392f0b736202933ac5f273aac64715ad3
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "zone.js": "~0.8.26"

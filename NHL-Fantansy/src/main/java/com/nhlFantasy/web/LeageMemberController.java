@@ -1,5 +1,7 @@
 package com.nhlFantasy.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhlFantasy.entity.HockeyPlayerStatsArchive;
 import com.nhlFantasy.entity.League;
 import com.nhlFantasy.entity.LeagueMember;
 import com.nhlFantasy.entity.User;
+import com.nhlFantasy.service.HockeyPlayerStatsArchiveService;
 import com.nhlFantasy.service.LeagueMemberService;
 import com.nhlFantasy.service.LeagueService;
 import com.nhlFantasy.service.UserService;
@@ -30,6 +34,9 @@ public class LeageMemberController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	HockeyPlayerStatsArchiveService hockeyPlayerStatsArchiveService;
 
 	@RequestMapping(value = "/api/addLeagueMember", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody JsonNode addLeagueMember(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
@@ -90,5 +97,20 @@ public class LeageMemberController {
 			node = mapper.convertValue(leagueMemberObject, JsonNode.class);
 			return node;
 		}
+	}
+	
+	@RequestMapping(value = "/api/getPointsHistory", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+	public @ResponseBody JsonNode getPointHistory(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String tempLeagueId = objNode.get("leagueId").toString();
+		int leagueId = Integer.parseInt(tempLeagueId);
+		
+		String tempUserId = objNode.get("userid").toString();
+		int userid = Integer.parseInt(tempUserId);
+		List<HockeyPlayerStatsArchive> hockeyPlayerStatsArchive = hockeyPlayerStatsArchiveService.getPointHistory(leagueId,userid);
+		JsonNode node = null;
+		node = mapper.convertValue(hockeyPlayerStatsArchive, JsonNode.class);
+		return node;
 	}
 }

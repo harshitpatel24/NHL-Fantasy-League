@@ -1,0 +1,35 @@
+<div class =  "leagues">
+<div class=created_leagues>
+    <div id = "title">Created League</div>
+    <form class="example-form">
+        <table class="example-full-width">
+          <tr>
+            <th>League Capacity</th>
+            <th>League Name</th>
+            <th>League Created By</th>
+          </tr>
+          <tr *ngFor="let l of createdleague">
+              <td><span>{{l.leagueCapacity}}</span></td>
+              <td><span><a [routerLink]="path + l.leagueId">{{l.leagueName}}</a></span></td>
+              <td><span>{{l.user.uname}}</span></td> 
+        </tr>             
+        </table>
+      </form>
+    </div>
+
+        <div class=joined_leagues>
+            <div id = "title">Joined League</div>
+            <form class="example-form">
+                <table class="example-full-width">
+                  <tr>
+                      <th>League Capacity</th>
+                      <th>League Name</th>
+                      <th>League Created By</th>
+                    </tr>
+                    <tr *ngFor="let l of joinedleague">
+             <td><span>{{l.leagueCapacity}}</span></td>
+             <td><span><a [routerLink]="path + l.leagueId">{{l.leagueName}}</a></span></td>
+             <td><span>{{l.user.uname}}</span></td> 
+                  </tr>    
+                </table></form></div>
+            </div>

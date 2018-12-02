@@ -12,7 +12,6 @@ export class LeagueService {
   constructor(private http: Http) { }
 
   addLeague(league: League){
-    console.log(league);
 
     let tempObj = {
       "leagueName": league.leagueName,
@@ -37,5 +36,35 @@ export class LeagueService {
     return this.http.post('/api/addLeagueMember', tempObj).pipe(map((response: Response) => response.json()));
     
 
+  }
+  showCreatedLeagues(usr){
+    let tempObj = {
+      "creatorId": usr.userid,
+    }
+    return this.http.post('/api/showcreatedleague', tempObj).pipe(map((response: Response) => response.json()));
+  }
+  showJoinedLeagues(usr){
+    let tempObj = {
+      "userId": usr.userid,
+    }
+    return this.http.post('/api/showjoinedleague', tempObj).pipe(map((response: Response) => response.json()));
+  }
+  getMatchSchedule(date){
+    let tempObj = {
+      "date": date,
+    }
+    return this.http.post('/api/getMatchBydate', tempObj).pipe(map((response: Response) => response.json()));
+  }
+  getLeagueLeaders(leagueid){
+    let tempObj = {
+      "leagueId": leagueid,
+    }
+    return this.http.post('/api/getLeagueLeaders', tempObj).pipe(map((response: Response) => response.json()));
+  }
+  getLeagueByLeagueId(leagueid){
+    let tempObj = {
+      "leagueId": leagueid,
+    }
+    return this.http.post('/api/getLeagueByLeagueId', tempObj).pipe(map((response: Response) => response.json()));
   }
 }

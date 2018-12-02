@@ -27,7 +27,7 @@ public class ShowCreatedLeagueController {
 	public @ResponseBody JsonNode showCreatedLeague(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
 		ObjectMapper mapper = new ObjectMapper();
 		String createrIdStr = objNode.get("creatorId").toString();
-		int creatorId = Integer.parseInt(createrIdStr.substring(1,createrIdStr.length()-1));
+		int creatorId = Integer.parseInt(createrIdStr);
 		ArrayList<League> createdLeagues = showCreatedLeagueService.getCreatedLeaguesService(creatorId);
 		JsonNode node = mapper.convertValue(createdLeagues, JsonNode.class);
 		return node;

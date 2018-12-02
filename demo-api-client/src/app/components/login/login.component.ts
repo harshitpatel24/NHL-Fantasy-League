@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import { User } from  '../../models/user.model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoginService } from '../../services/login/login.service';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   password: string;
   user: User;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService,private localSt: LocalStorageService) { }
 
   login() : void 
   {
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.user = data;
         if (this.user.userid != -1)
         {
-          console.log(this.user);
+          this.localSt.store('userid',this.user.userid);
           this.router.navigate(['/users', this.user.userid]);
         }
         else

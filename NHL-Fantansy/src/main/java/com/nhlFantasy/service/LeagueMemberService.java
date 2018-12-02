@@ -1,5 +1,8 @@
 package com.nhlFantasy.service;
 
+import java.util.List;
+
+import com.nhlFantasy.entity.HockeyPlayerStatsArchive;
 import com.nhlFantasy.entity.LeagueMember;
 
 public interface LeagueMemberService {

@@ -6,7 +6,7 @@ class Visitor(abc.ABC,object):
 	def visitLeagueMember(self,LeagueMember):
 		pass
 	@abc.abstractmethod
-	def visitMemberTeam(self,MemberTeam):
+	def visitHockeyPlayerStats(self,HockeyPlayerStats):
 		pass
 
 class goalPointVisitor(Visitor):
@@ -17,12 +17,12 @@ class goalPointVisitor(Visitor):
 	def visitLeagueMember(self,LeagueMember,playerIdList,dbPassword):
 		print("Visit League Member for adding Goal Points...")
 		dbImplObj = dbImpl.Database()
-		dbImplObj.addPointsToDb(dbPassword, 'leagueMember', playerIdList, self.goalPoint)
+		dbImplObj.addPointsToDb(dbPassword, 'leagueMember', playerIdList, self.goalPoint,'G')
 
-	def visitMemberTeam(self,MemberTeam,playerIdList,dbPassword):
-		print("Visit Member Team for adding Goal Points...")
+	def visitHockeyPlayerStats(self,HockeyPlayerStats,playerIdList,dbPassword):
+		print("Visit hockeyPlayerStatsArchive for adding Goal Points...")
 		dbImplObj = dbImpl.Database()
-		dbImplObj.addPointsToDb(dbPassword,'memberTeam',playerIdList,self.goalPoint)
+		dbImplObj.addPointsToDb(dbPassword,'hockeyPlayerStatsArchive',playerIdList,self.goalPoint,'G')
 	
 class assistPointVisitor(Visitor):
 	assistPoint = 2
@@ -32,12 +32,12 @@ class assistPointVisitor(Visitor):
 	def visitLeagueMember(self,LeagueMember,playerIdList,dbPassword):
 		print("Visit League Member for adding Assist Points...")
 		dbImplObj = dbImpl.Database()
-		dbImplObj.addPointsToDb(dbPassword, 'leagueMember', playerIdList, self.assistPoint)
+		dbImplObj.addPointsToDb(dbPassword, 'leagueMember', playerIdList, self.assistPoint,'A')
 	
-	def visitMemberTeam(self,MemberTeam,playerIdList,dbPassword):
-		print("Visit Member Team for adding Assist Points...")
+	def visitHockeyPlayerStats(self,HockeyPlayerStats,playerIdList,dbPassword):
+		print("Visit hockeyPlayerStatsArchive for adding Assist Points...")
 		dbImplObj = dbImpl.Database()
-		dbImplObj.addPointsToDb(dbPassword, 'memberTeam', playerIdList, self.assistPoint)
+		dbImplObj.addPointsToDb(dbPassword, 'hockeyPlayerStatsArchive', playerIdList, self.assistPoint,'A')
 
 	
 class Visitable(abc.ABC):
@@ -52,9 +52,9 @@ class LeagueMember(Visitable):
 	def accept(self,Visitor,playerList,dbPassword):
 		Visitor.visitLeagueMember(self,playerList,dbPassword)
 	
-class MemberTeam(Visitable):
+class HockeyPlayerStats(Visitable):
 	def __init__(self):
 		pass
 		
 	def accept(self,Visitor,playerList,dbPassword):
-		Visitor.visitMemberTeam(self,playerList,dbPassword)
+		Visitor.visitHockeyPlayerStats(self,playerList,dbPassword)

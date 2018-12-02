@@ -1,0 +1,24 @@
+h1{
+    margin : 0px;
+    color: black;
+    text-align: right;
+    padding-top: 25px;
+}
+.container {
+    background-color: rgb(122, 122, 255);
+    height: 100px;
+}
+a{
+    text-decoration: none;
+}
+.logout{
+    margin-top:2%;
+    margin-left: 5%;
+}
+.title{
+width:60%;
+float: left;
+}
+span{
+    font-weight: bold;
+}
