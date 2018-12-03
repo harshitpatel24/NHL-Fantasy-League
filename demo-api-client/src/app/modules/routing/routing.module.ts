@@ -10,6 +10,7 @@ import { SelectPlayersComponent } from '../../components/select-players/select-p
 import { ViewLeagueComponent } from '../../components/view-league/view-league.component';
 import { LeagueDashboardComponent } from '../../components/league-dashboard/league-dashboard.component';
 import { ScoreLogComponent } from '../../components/score-log/score-log.component';
+import { MemberPlayersComponent } from '../../components/member-players/member-players.component';
 import { AppComponent } from 'src/app/app.component';
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'users/:id/league/:leagueid', component: LeagueDashboardComponent },
   { path: 'users/:id/editProfile', component: UserEditComponent },
   { path: 'users/:id/league/:leagueid/selectPlayers', component: SelectPlayersComponent },
-  { path: 'users/:id/league/:leagueid/checkPointsLog', component: ScoreLogComponent }
+  { path: 'users/:id/league/:leagueid/checkPointsLog', component: ScoreLogComponent },
+  { path: 'users/:id/league/:leagueid/players/:memberid', component: MemberPlayersComponent }
 ];
 
 @NgModule({

@@ -83,6 +83,7 @@ public class HockeyPlayerController {
 		
 		return node;
 	}
+	
 	@RequestMapping(value = "/api/getSelectedPlayersByMember", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
 	public @ResponseBody JsonNode getSelectedPlayersByMember(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
 		

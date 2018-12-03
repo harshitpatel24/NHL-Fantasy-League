@@ -17,6 +17,7 @@ export class ScoreLogComponent implements OnInit {
   dataSource: any;
   leagueid: any;
   userid: any;
+  memberid: any; 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
