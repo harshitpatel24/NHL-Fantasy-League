@@ -1,11 +1,11 @@
 h1{
     margin : 0px;
-    color: black;
+    color: white;
     text-align: right;
     padding-top: 25px;
 }
 .container {
-    background-color: rgb(122, 122, 255);
+    background-color: rgba(0, 0, 0,0.90);
     height: 100px;
 }
 a{
@@ -14,11 +14,15 @@ a{
 .logout{
     margin-top:2%;
     margin-left: 5%;
+	background:white;
+	color:black;
 }
 .title{
 width:60%;
 float: left;
+color:white;
 }
 span{
     font-weight: bold;
+	color:white;
 }

@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div layout-fill layout="column" layout-align="center none" class="container">
   <div layout="row" layout-align="center none" class="sub_container">
-    <mat-card class="example-card league_form_align">
+    <mat-card class="example-card league_form_align" [style.opacity]="0.90">
       <mat-card-header style="margin-left: 30%">
         <mat-card-title class="font_color_class">Create League</mat-card-title>
       </mat-card-header>
@@ -31,7 +31,7 @@
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="submitLeague()" color="primary" style="margin-bottom: 8%">Submit</button>
+        <button mat-raised-button (click)="submitLeague()" style="margin-bottom: 8%;background:black;color:white">Submit</button>
       </mat-card-actions>
     </mat-card>
   </div>

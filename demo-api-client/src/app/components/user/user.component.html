@@ -5,9 +5,9 @@
       </mat-card-header>
       <app-view-league></app-view-league>
       <div class= "row form_align">
-          <button id = "editProfile" mat-raised-button (click)="editProfile()" color="primary">Edit Profile</button>
-          <button id = "createLeague" mat-raised-button (click)="createLeague()" color="primary">Create League</button>
-          <button id = "joinLeague"  mat-raised-button (click)="joinLeague()" color="primary">Join League</button>
+          <button id = "editProfile" mat-raised-button (click)="editProfile()" style="background:black;color:white">Edit Profile</button>
+          <button id = "createLeague" mat-raised-button (click)="createLeague()" style="background:black;color:white">Create League</button>
+          <button id = "joinLeague"  mat-raised-button (click)="joinLeague()" style="background:black;color:white">Join League</button>
           <app-join-league *ngIf="joinLeagueForm" [user]="user"></app-join-league> 
       </div>
   </div>

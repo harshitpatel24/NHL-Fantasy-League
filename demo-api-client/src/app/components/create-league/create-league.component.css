@@ -1,16 +1,12 @@
-body{
-    padding : 0px;
-    margin : 0px;
-    background-color: white;
-}
 /* .container {
     background-color: rgb(122, 122, 255);
     height: 100px;
 } */
 
 .container{
-    width:100%;
+    width:98.5%;
     height:100%;
+	background-image: url("../backgroungImage2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,12 +15,10 @@ body{
 
 .sub_container
 {
-	height:150px;
 	width:40%;
-	background : rgba(0, 0, 0, 0.75);
 	position : relative;
 	margin-left:30%;
-	margin-top : 15%;
+	margin-top : 12.5%;
 	font-color: black;
 	border-radius:5%
 }
