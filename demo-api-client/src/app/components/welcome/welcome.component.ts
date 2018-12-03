@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
   title = 'Welcome to NHL Fantasy App';
-  
+
   constructor() { }
 
   ngOnInit() {

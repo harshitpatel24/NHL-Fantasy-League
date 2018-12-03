@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nhlFantasy.dao.UserRepository;
+import com.nhlFantasy.encryption.DESEncryptDecrypt;
 import com.nhlFantasy.entity.User;
 import com.nhlFantasy.service.UserService;
 
@@ -30,7 +31,16 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User addUser(User user) {
-		User u = userRepository.save(user); 
+		User u = null;
+		try {
+		String password = user.getPassword();
+		DESEncryptDecrypt des = new DESEncryptDecrypt();
+		String encryptedPass = des.encryptValue(password);
+		user.setPassword(encryptedPass);
+		u = userRepository.save(user); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return u;
 	}
 	
@@ -58,19 +68,45 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User authenticateUser(String email, String password) {
+		//User u = new User();
+		User userObj = userRepository.searchUserbyEmail(email);
+		String passwordFromDB = userObj.getPassword();
 		
-		User u = userRepository.authenticateUser(password, email);
-		
-		if (u != null)
-		{
-			return u;
+		String decryptedDBPass = "";
+		try {
+			DESEncryptDecrypt des = new DESEncryptDecrypt();
+			decryptedDBPass = des.decryptValue(passwordFromDB);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		else
-		{
+		System.out.println("decryptedDBPass = " + decryptedDBPass + "and password = " + password);
+		if (decryptedDBPass.equals(password)) {
+			//System.out.println("into if");
+			return userObj;
+		} else {
+			//System.out.println("into else");
 			User blankUser = new User();
 			blankUser.setUserid(-1);
 			return blankUser;
 		}
+		//System.out.println("encrypted pas = "+ encryptedPass);
+			//User u = userRepository.authenticateUser(encryptedPass, email);
+			
+//			if (u != null)
+//			{
+//				return u;
+//			}
+//			else
+//			{
+//				User blankUser = new User();
+//				blankUser.setUserid(-1);
+//				return blankUser;
+//			}
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+		//return u;
 		
 	}
 
@@ -84,6 +120,13 @@ public class UserServiceImpl implements UserService{
 	public User searchUserbyuserId(int id) {
 		// TODO Auto-generated method stub
 		User u = userRepository.searchUserbyId(id);
+		return u;
+	}
+
+	@Override
+	public User searchUserbyEmail(String email) {
+		// TODO Auto-generated method stub
+		User u = userRepository.searchUserbyEmail(email);
 		return u;
 	}
 
