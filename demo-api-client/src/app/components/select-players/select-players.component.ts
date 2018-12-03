@@ -132,7 +132,9 @@ export class SelectPlayersComponent implements OnInit {
 
       let playerIds = new Array<Number>();
       let counts = {"F": 0, "D": 0, "G": 0}
+      let cost = 0;
       this.checkedDataSource.data.forEach((k: any,item) => {
+        cost += k.playerValue;
         if (k.position == "C" || k.position == "C/LW" || k.position == "C/RW" || k.position == "C/LW/RW" || k.position == "LW" || k.position == "RW" || k.position == "LW/RW")
         {
           counts["F"]++; 
@@ -185,7 +187,16 @@ export class SelectPlayersComponent implements OnInit {
         tests++; 
       }
 
-      if (tests == 4)
+      if (cost > 80)
+      {
+        alert("Exceeding your budget. Select within budget.");
+      }
+      else
+      {
+        tests++; 
+      }
+
+      if (tests == 5)
       {
         flag = true; 
       }
