@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { LeagueService } from '../../services/league/league.service';
 import { League } from '../../models/league.model';
 import { User } from '../../models/user.model';
@@ -17,7 +18,7 @@ export class JoinLeagueComponent implements OnInit {
   @Input()
   user: User;
 
-  constructor(private leagueService: LeagueService) { }
+  constructor(private leagueService: LeagueService, private router: Router) { }
 
   ngOnInit() {
     this.league = new League();
@@ -38,11 +39,11 @@ export class JoinLeagueComponent implements OnInit {
       if (this.leagueMember.id != -1)
       {
         alert("Success!");
+        this.router.navigate(['/users', this.user.userid]);
       }
       else
       {
         alert("Fail!");
-
       }
 
     });
