@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   password: string;
   user: User;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService,private localSt: LocalStorageService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService, private localSt: LocalStorageService) { }
 
   login() : void 
   {
@@ -41,13 +41,6 @@ export class LoginComponent implements OnInit {
           alert("Fail!");
         }
     });
-
-    // if (this.user.userid != null)
-    // {
-    //   let snackBarRef = this.snackBar.open('Message archived');
-    //   //TODO: navigate to user dashboard
-
-    // }
   }
 
   ngOnInit() 

@@ -16,7 +16,7 @@ export class CreateLeagueComponent implements OnInit {
   league: League;
   user: User;
 
-  constructor(private leagueService: LeagueService, private route: ActivatedRoute,private localSt:LocalStorageService,private appComponent: AppComponent) { }
+  constructor(private leagueService: LeagueService, private route: ActivatedRoute, private router: Router, private localSt:LocalStorageService,private appComponent: AppComponent) { }
 
   ngOnInit() 
   {
@@ -37,11 +37,12 @@ export class CreateLeagueComponent implements OnInit {
       if (this.league.leagueId != -1)
       {
         alert("Success!");
+        this.router.navigate(['/users', this.user.userid]);
       }
       else
       {
         alert("Fail!");
-
+        this.router.navigate([this.router.url]);
       }
 
     });

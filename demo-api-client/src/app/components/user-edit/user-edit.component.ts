@@ -14,7 +14,7 @@ export class UserEditComponent implements OnInit {
 
   user: User;
   id: number;
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router,private localSt:LocalStorageService,private appComponent: AppComponent) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private localSt:LocalStorageService, private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -42,11 +42,12 @@ export class UserEditComponent implements OnInit {
       if (this.user.userid != -1)
       {
         alert("Success!");
+        this.router.navigate(['/users', this.user.userid]);
       }
       else
       {
         alert("Fail!");
-
+        this.router.navigate([this.router.url]);
       }
 
     });

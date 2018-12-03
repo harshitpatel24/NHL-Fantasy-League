@@ -32,7 +32,4 @@ const routes: Routes = [
   imports: [ RouterModule.forRoot(routes)]
 })
 
-export class RoutingModule { 
-
-
-}
+export class RoutingModule { }
