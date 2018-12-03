@@ -16,7 +16,7 @@
 	position : relative;
 	margin-left:30%;
 	margin-top : 15%;
-	
+	font-color: black;
 	border-radius:5%
 }
 
@@ -29,5 +29,24 @@
 
 .font_color_class
 {
-	color:white !important;
+	background-color:black;
+	color: white;
 }
+.font_color_label{
+	background-color: white;
+	height: 30px;
+	border-radius: 6%;
+	margin-top: -4%;
+	margin-left: -3%;
+}
+.form_align{
+	margin-top: 15%;
+}
+/* /deep/ .mat-form-field {
+	font: black;
+    background-color: white;    /* replace this color with your accent color hex code
+} */
+
+/* /deep/ .matInput{
+	background-color: white;
+} */

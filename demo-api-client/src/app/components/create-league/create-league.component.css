@@ -3,7 +3,56 @@ body{
     margin : 0px;
     background-color: white;
 }
-.container {
+/* .container {
     background-color: rgb(122, 122, 255);
     height: 100px;
+} */
+
+.container{
+    width:100%;
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	position : fixed;
+}
+
+.sub_container
+{
+	height:150px;
+	width:40%;
+	background : rgba(0, 0, 0, 0.75);
+	position : relative;
+	margin-left:30%;
+	margin-top : 15%;
+	font-color: black;
+	border-radius:5%
+}
+
+.form_class
+{
+	color:white;
+	margin-left:35%;
+}
+
+
+.font_color_class
+{
+	background-color: white;
+	color: black;
+	/* padding-left: 50%;
+	padding-right: -10%; */
+}
+.font_color_label{
+	background-color: white;
+	height: 30px;
+	border-radius: 6%;
+	margin-top: -4%;
+	margin-left: -3%;
+}
+.form_align{
+	margin-top: 7%;
+}
+.league_form_align{
+	margin-top: -17%;
 }
