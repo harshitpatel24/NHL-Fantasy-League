@@ -31,13 +31,13 @@ class GetmatchresultfordeltaSpider(scrapy.Spider):
 			
 			if response.xpath('//*[@id="games"]/tbody/tr['+str(i)+']/th/text()').extract() != []:
 				date1=response.xpath('//*[@id="games"]/tbody/tr['+str(i)+']/th/text()').extract()
-				if datetime.strptime(date1[0],"%Y-%m-%d") == datetime.now() - timedelta(1):
+				if datetime.strptime(date1[0],"%Y-%m-%d") == datetime.now() - timedelta(4):
 					self.date.append(date1)
 				else:
 					pass
 			else:
 				date1=response.xpath('//*[@id="games"]/tbody/tr['+str(i)+']/th/a/text()').extract()
-				if datetime.strptime(date1[0],"%Y-%m-%d") == datetime.now() - timedelta(1):
+				if datetime.strptime(date1[0],"%Y-%m-%d") == datetime.now() - timedelta(4):
 					self.date.append(date1)
 				else:
 					pass
@@ -47,7 +47,7 @@ class GetmatchresultfordeltaSpider(scrapy.Spider):
 			self.teamGoal1.append(response.xpath('//*[@id="games"]/tbody/tr['+str(i)+']/td[2]/text()').extract())
 			self.teamGoal2.append(response.xpath('//*[@id="games"]/tbody/tr['+str(i)+']/td[4]/text()').extract())
 			
-			if self.date[i-1][0] == str((datetime.now() - timedelta(1)).strftime('%Y-%m-%d')):
+			if self.date[i-1][0] == str((datetime.now() - timedelta(4)).strftime('%Y-%m-%d')):
 				url=self.start_urls[0]+str(response.xpath('//*[@id="games"]/tbody/tr['+str(i)+']/th/a/@href').extract()[0])
 				yield scrapy.Request(url,callback=self.parse_score_details,meta={'date':self.date[-1][0],'team1':self.teamName1[-1][0],'team2':self.teamName2[-1][0],'team1G':self.teamGoal1[-1][0],'team2G':self.teamGoal2[-1][0]})
 			
