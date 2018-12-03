@@ -1,0 +1,52 @@
+/* .container {
+    background-color: rgb(122, 122, 255);
+    height: 100px;
+} */
+
+.container{
+    width:98.5%;
+    height:100%;
+	background-image: url("../backgroundImage3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	position : fixed;
+}
+
+.sub_container
+{
+	width:40%;
+	position : relative;
+	margin-left:30%;
+	margin-top : 12.5%;
+	font-color: black;
+	border-radius:5%
+}
+
+.form_class
+{
+	color:white;
+	margin-left:35%;
+}
+
+
+.font_color_class
+{
+	background-color: white;
+	color: black;
+	/* padding-left: 50%;
+	padding-right: -10%; */
+}
+.font_color_label{
+	background-color: white;
+	height: 30px;
+	border-radius: 6%;
+	margin-top: -4%;
+	margin-left: -3%;
+}
+.form_align{
+	margin-top: 7%;
+}
+.league_form_align{
+	margin-top: -17%;
+}

@@ -1,7 +1,7 @@
 <div class="container">
-      <a [routerLink]="path" class = "title">
-      <h1>NHL-Fantasy League</h1>
-    </a>
+     <a [routerLink]="path" class = "title">
+        <h1>NHL-Fantasy League</h1>
+     </a>
     <span *ngIf="user" >Welcome  {{user.uname}}</span>
-      <button mat-raised-button (click)="logout()" color="primary" class = "logout">Logout</button>
+    <button mat-raised-button (click)="logout()" color="primary" class = "logout">Logout</button>
 </div>

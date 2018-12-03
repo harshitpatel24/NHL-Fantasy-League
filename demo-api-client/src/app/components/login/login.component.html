@@ -1,28 +1,28 @@
 <div layout-fill layout="column" layout-align="center none" class="container">
-  <div layout="row" layout-align="center none" class="sub_container">
+  <div layout="row" layout-align="center none" class="sub_container" style="padding-top:2%">
       <mat-card-header>
-        <mat-card-title class="font_color_class">Login</mat-card-title>
+        <mat-card-title class="font_color_class">User Login</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form class="example-form form_class">
-          <table class="example-full-width" cellspacing="0">
+          <table class="example-full-width form_align" cellspacing="0">
             <tr>
               <td>
-                <mat-form-field class="example-full-width font_color_class">
-                <input matInput placeholder="Username" [(ngModel)]="username" name="username"  class="font_color_class" required >
+                <mat-form-field class="example-full-width">
+                <input matInput placeholder="Username" [(ngModel)]="username" name="username"  class="font_color_label" style="color: black" required >
                 </mat-form-field>
               </td>
             </tr>
             <tr>
             <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" class="font_color_class" required>
+              <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" class="font_color_label" style="color: black" required>
             </mat-form-field></td>
           </tr></table>
         </form>
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="login()" color="primary">Login</button>
+        <button mat-raised-button (click)="login()">Login</button>
       </mat-card-actions>
     
   </div>

@@ -1,37 +1,37 @@
-<div layout-fill layout="column" layout-align="center none">
-  <div layout="row" layout-align="center none">
-    <mat-card class="example-card">
+<div layout-fill layout="column" layout-align="center none" class="container">
+ <div layout="row" layout-align="center none" class="sub_container" style="padding-top:2%">
+    <!-- <mat-card class="example-card"> -->
       <mat-card-header>
-        <mat-card-title>Register</mat-card-title>
+        <mat-card-title class="font_color_class">Register</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <form class="example-form">
-          <table class="example-full-width" cellspacing="0">
+        <form class="example-form form_class">
+          <table class="example-full-width form_align" cellspacing="0">
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Enter name" [(ngModel)]="name" name="name" required>
+                  <input matInput placeholder="Enter name" [(ngModel)]="name" name="name" class="font_color_label" style="color: black" required>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                <input matInput placeholder="Enter e-mail" [(ngModel)]="username" name="username" required>
+                <input matInput placeholder="Enter e-mail" [(ngModel)]="username" name="username" class="font_color_label" style="color: black" required>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
             <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Enter password" [(ngModel)]="password" type="password" name="password" required>
+              <input matInput placeholder="Enter password" [(ngModel)]="password" type="password" name="password" class="font_color_label" style="color: black" required>
             </mat-form-field></td>
           </tr></table>
         </form>
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="signUp()" color="primary">Sign-Up</button>
+        <button mat-raised-button (click)="signUp()" style="margin-bottom: 10%">Sign-Up</button>
       </mat-card-actions>
-    </mat-card>
+   <!--  </mat-card> -->
   </div>
 </div>
