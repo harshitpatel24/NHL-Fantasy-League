@@ -37,7 +37,6 @@ export class UserComponent implements OnInit {
   }
 
   editProfile() {
-    console.log(this.router.url)
     this.router.navigate([this.router.url + '/editProfile']);
   }
 
@@ -48,7 +47,6 @@ export class UserComponent implements OnInit {
   joinLeague() {
     this.joinLeagueButton = false;
     this.joinLeagueForm = true;
-
   }
   
 

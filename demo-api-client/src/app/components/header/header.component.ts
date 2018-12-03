@@ -12,7 +12,7 @@ import { UserService } from '../../services/user/user.service';
 export class HeaderComponent implements OnInit {
   id: number;
   path: any;
-  user: User;
+  user: any;
   constructor(private route: ActivatedRoute,private localSt:LocalStorageService,private router: Router,private userService: UserService) { }
 
   ngOnInit() {
@@ -22,11 +22,10 @@ export class HeaderComponent implements OnInit {
     this.path = '/users/'+this.id;
     let usr = {
       userid: this.id
-      }
+    }
     this.userService.getUser(usr).subscribe(data => {
       this.user = data;
     });
-    console.log(this.user);
   }
 
   logout(){

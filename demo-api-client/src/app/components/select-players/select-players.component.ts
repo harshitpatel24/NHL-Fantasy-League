@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import {Location} from '@angular/common';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import {Router, ActivatedRoute, Params} from '@angular/router';
@@ -25,7 +26,7 @@ export class SelectPlayersComponent implements OnInit {
   userid: any
   checkedData = []; 
        
-  constructor(private playerService: PlayerService, private router: Router,private route: ActivatedRoute) { }
+  constructor(private playerService: PlayerService, private router: Router, private route: ActivatedRoute, private location: Location) { }
      
    ngOnInit(){
       this.route.params.subscribe(params => {
@@ -124,27 +125,87 @@ export class SelectPlayersComponent implements OnInit {
     }
 
     submitPlayers() {
+      let flag = false; 
       let memberTeam = new MemberTeam();
       memberTeam.userid = this.userid;
       memberTeam.leagueId = this.leagueid;
 
       let playerIds = new Array<Number>();
+      let counts = {"F": 0, "D": 0, "G": 0}
       this.checkedDataSource.data.forEach((k: any,item) => {
+        if (k.position == "C" || k.position == "C/LW" || k.position == "C/RW" || k.position == "C/LW/RW" || k.position == "LW" || k.position == "RW" || k.position == "LW/RW")
+        {
+          counts["F"]++; 
+        }
+        else if (k.position == "D")
+        {
+          counts["D"]++;
+        }
+        else if (k.position == "G")
+        {
+          counts["G"]++; 
+        }
         playerIds.push(k.playerId);
       });
 
+      let tests = 0; 
+      if (playerIds.length != 22)
+      {
+        alert("Please make sure you have 22 players max/min.");
+      }
+      else
+      {
+        tests++; 
+      }
+
+      if (counts["F"] != 12)
+      {
+        alert("Please make sure you have 12 forwards max/min.");
+      }
+      else
+      {
+        tests++; 
+      }
+
+      if (counts["D"] != 9)
+      {
+        alert("Please make sure you have 9 defencemen max/min.");
+      }
+      else
+      {
+        tests++; 
+      }
+
+      if (counts["G"] != 1)
+      {
+        alert("Please make sure you have 1 goalie max/min.");
+      }
+      else
+      {
+        tests++; 
+      }
+
+      if (tests == 4)
+      {
+        flag = true; 
+      }
+
       memberTeam.playersIds = playerIds;
       
-      this.playerService.addPlayers(memberTeam).subscribe(data => {
-        if (data.user.userid != -1 && data.league.leagueId != -1)
-        {
-          alert("Success!");
-        }
-        else
-        {
-          alert("Failed!");
-        }
-      });
+      if (flag != false)
+      {
+        this.playerService.addPlayers(memberTeam).subscribe(data => {
+          if (data.user.userid != -1 && data.league.leagueId != -1)
+          {
+            alert("Success!");
+            this.location.back();
+          }
+          else
+          {
+            alert("Failed!");
+          }
+        });
+      }
     }
   
     /** Selects all rows if they are not all selected; otherwise clear selection. */
