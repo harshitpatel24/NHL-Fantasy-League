@@ -39,6 +39,14 @@ export class PlayerService {
      return this.http.post('/api/getSelectedPlayersByMember', tempObj).pipe(map((response: Response) => response.json())); 
   }
 
+  getPlayersByMembers(leagueMember: LeagueMember){
+    let tempObj = {
+      "memberId": leagueMember.id
+     }
+
+     return this.http.post('/api/getSelectedPlayersByMembers', tempObj).pipe(map((response: Response) => response.json()));
+  }
+
   addPlayers(memberTeam: MemberTeam){
 
     let tempObj = {

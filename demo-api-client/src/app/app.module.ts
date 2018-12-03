@@ -26,6 +26,7 @@ import { SelectPlayersComponent } from './components/select-players/select-playe
 import { PlayerListComponent } from './components/player-list/player-list.component';
 import { ScoreLogComponent } from './components/score-log/score-log.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MemberPlayersComponent } from './components/member-players/member-players.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HeaderComponent } from './components/header/header.component';
     SelectPlayersComponent,
     PlayerListComponent,
     ScoreLogComponent,
-    HeaderComponent
+    HeaderComponent,
+    MemberPlayersComponent
   ],
   imports: [
     BrowserModule,

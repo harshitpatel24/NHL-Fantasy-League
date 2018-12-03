@@ -23,6 +23,7 @@ export class LeagueDashboardComponent implements OnInit {
   leagueid : number;
   league : League;
   leagueName : string;
+  path: any;
 
   constructor(private leagueService: LeagueService, private router: Router,private route: ActivatedRoute,private localSt:LocalStorageService,private appComponent: AppComponent) { }
 
@@ -32,15 +33,19 @@ export class LeagueDashboardComponent implements OnInit {
         this.id = +params['id'];
       });
 
+      this.path = this.router.url + '/players/';
+
       if (this.leagueid != null)
       {
         var month = this.today.getMonth()+1;
         var currentdate = this.today.getFullYear()+"-"+ month+"-"+ this.today.getDate();
           this.leagueService.getMatchSchedule(currentdate).subscribe(data => {
           this.matchschedule = data;
+          console.log(this.matchschedule);
         });
         this.leagueService.getLeagueLeaders(this.leagueid).subscribe(data => {
           this.leagueLeaders = data;
+          console.log(this.leagueLeaders);
         });
         this.getLeagueByLeagueId();
       }

@@ -83,25 +83,26 @@ public class HockeyPlayerController {
 		
 		return node;
 	}
-//	@RequestMapping(value = "/api/getSelectedPlayersByMember", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
-//	public @ResponseBody JsonNode getSelectedPlayersByMember(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
-//		
-//		ObjectMapper mapper = new ObjectMapper();
-//		String useridStr = objNode.get("userid").toString();
-//		int userid = Integer.parseInt(useridStr);
-//		
-//		String leagueidStr = objNode.get("leagueId").toString();
-//		int leagueId = Integer.parseInt(leagueidStr);
-//
-//		List<HockeyPlayer> hockeyPlayers = memberTeamService.getSelectedPlayersByMember(userid,leagueId);
-//		
-//		//System.out.println("list of hockey players = " + hockeyPlayers.size());
-//		JsonNode node = null;
-//		
-//		node = mapper.convertValue(hockeyPlayers, JsonNode.class);
-//		
-//		return node;
-//	}
+	
+	@RequestMapping(value = "/api/getSelectedPlayersByMember", method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+	public @ResponseBody JsonNode getSelectedPlayersByMember(@RequestBody JsonNode objNode,  HttpServletResponse response, HttpServletRequest  request) {
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String useridStr = objNode.get("userid").toString();
+		int userid = Integer.parseInt(useridStr);
+		
+		String leagueidStr = objNode.get("leagueId").toString();
+		int leagueId = Integer.parseInt(leagueidStr);
+
+		List<HockeyPlayer> hockeyPlayers = hockeyPlayerService.getSelectedPlayersByMember(userid,leagueId);
+		
+		//System.out.println("list of hockey players = " + hockeyPlayers.size());
+		JsonNode node = null;
+		
+		node = mapper.convertValue(hockeyPlayers, JsonNode.class);
+		
+		return node;
+	}
 	
 	
 }
